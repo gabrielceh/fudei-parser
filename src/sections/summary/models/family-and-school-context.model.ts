@@ -1,10 +1,9 @@
 export interface FamilyAndSchoolContext {
-  family: {
-    strengths?: string;
-    difficulties?: string;
-  };
-  school: {
-    strengths?: string;
-    difficulties?: string;
-  };
+  family: ContextFactors;
+  school: ContextFactors;
+}
+
+export interface ContextFactors {
+  strengths?: string;
+  difficulties?: string;
 }

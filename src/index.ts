@@ -8,8 +8,8 @@ import { readPdfFromUrl } from "./pdf/read-from-url";
 import { generalBackgroundSection } from "./sections/general-background/general-background-section";
 import { summarySection } from "./sections/summary/summary-section";
 
-const file1 = {path: "./src/pdfs/FU_21498364.pdf", name: "FU_21498364"};
-const file2 = {path:"./src/pdfs/FU_26166005.pdf", name: "FU_26166005"};
+const file1 = {path: "C:\/Users\/gach0\/OneDrive\/Desktop\/proyectos\/scraping-pdf-fudei\/pdfs\/FU_21498364.pdf", name: "FU_21498364"};
+const file2 = {path:"./pdfs/FU_26166005.pdf", name: "FU_26166005"};
 
 const nodeEnv = ENVIRONMENTS.NODE_ENV;
 
@@ -24,7 +24,7 @@ async function main() {
 
   // 🔹 Desde archivo local
   if(nodeEnv === "development"){
-    currentFile = file2;
+    currentFile = file1;
     result = await readPdfFromFile(currentFile.path);
   }else{
     // 🔹 Desde URL
@@ -44,6 +44,8 @@ async function main() {
   }
 
   await saveContentInJson({data: fudei, fileName: currentFile.name});
+
+  return fudei;
 }
 
 main().catch(console.error);

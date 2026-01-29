@@ -43,7 +43,7 @@ export const extractAffectiveSocialDomain = (
   );
 
   // 🔹 Otro
-  result.other = match(/Otro\s*([^\n]+)/, text)?.trim() || "";
+  result.other = match(/Otro\s*([\s\S]*)/, text)?.replace(/\s+/g, " ")?.trim() || "";
 
 
   return result;

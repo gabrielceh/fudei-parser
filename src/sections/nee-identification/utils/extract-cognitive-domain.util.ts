@@ -74,7 +74,7 @@ export const extractCognitiveDomain = (
     match(/Resolución de problemas:\s*(SI|NO)/i, text)
   );
   // 🔹 Funciones ejecutivas otro
-  result.executiveFunctions.other = match(/Otro:\s*([^\n]+)/i, text)?.trim() || "";
+  result.executiveFunctions.other = match(/Otro:\s*([\s\S]*)/i, text)?.replace(/\s+/g, " ")?.trim() || "";
 
 
   return result;

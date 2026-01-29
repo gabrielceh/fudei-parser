@@ -3,6 +3,7 @@ import { normalizePdfText } from "../../helpers/normalize-pdf-text.helper";
 import { AffectiveSocialDomainMapper } from "./mappers/affective-social-domain.mapper";
 import { CognitiveDomainMapper } from "./mappers/cognitive-domain.mapper";
 import { CommunicationDomainMapper } from "./mappers/communication-domain.mapper";
+import { EmotionalDomainMapper } from "./mappers/emotional-domain.mapper";
 import { LanguageDomainMapper } from "./mappers/language-domain.mapper";
 import { PsychomotorDomainMapper } from "./mappers/psychomotor-domain.mapper";
 import { SensoryPerceptualDomainMapper } from "./mappers/sensory-perceptual-domain.mapper";
@@ -23,6 +24,7 @@ export const neeIdentificationSection = (text: string): NeeIdentificationSection
   const sensoryPerceptualDomain = SensoryPerceptualDomainMapper.map(chunkNeeIdentificationText);
   const psychomotorDomain = PsychomotorDomainMapper.map(chunkNeeIdentificationText);
   const affectiveSocialDomain = AffectiveSocialDomainMapper.map(chunkNeeIdentificationText);
+  const emotionalDomain = EmotionalDomainMapper.map(chunkNeeIdentificationText);
 
   return {
     cognitive: cognitiveDomain,
@@ -31,6 +33,7 @@ export const neeIdentificationSection = (text: string): NeeIdentificationSection
     sensoryPerceptual: sensoryPerceptualDomain,
     psychomotor: psychomotorDomain,
     affectiveSocial: affectiveSocialDomain,
+    emotional: emotionalDomain,
   }
   
 

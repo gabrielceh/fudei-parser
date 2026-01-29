@@ -22,7 +22,7 @@ export const extractCommunicationDomain = (
   );
 
   // 🔹 Otro
-  result.other = match(/Otro:\s*([^\n]+)/i, text)?.trim() || "";
+  result.other = match(/Otro:\s*([\s\S]*)/i, text)?.replace(/\s+/g, " ")?.trim() || "";
 
 
   return result;

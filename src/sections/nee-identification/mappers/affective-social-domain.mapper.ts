@@ -11,8 +11,6 @@ export class AffectiveSocialDomainMapper {
     })
     
     if(!chunkAffectiveSocialText) return undefined;
-    console.log(chunkAffectiveSocialText);
-    
 
     const affectiveSocialDomain = extractAffectiveSocialDomain(chunkAffectiveSocialText);
 

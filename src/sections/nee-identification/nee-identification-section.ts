@@ -1,28 +1,22 @@
-import { WithOther } from "./types/with-other.interface";
+import { extractSectionByTitle } from "../../helpers/extract-section-by-table.helper";
+import { normalizePdfText } from "../../helpers/normalize-pdf-text.helper";
+import { CognitiveDomainMapper } from "./mappers/cognitive-domain.mapper";
+import { NeeIdentificationSection } from "./models/nee-identification.model";
 
-export interface CognitiveDomain {
-  attention: CognitiveAttention;
-  memory: CognitiveMemory;
-  executiveFunctions: CognitiveExecutiveFunctions;
-}
+export const neeIdentificationSection = (text: string): NeeIdentificationSection | undefined => {
+  const textNormalized = normalizePdfText(text);  
+  const chunkNeeIdentificationText = extractSectionByTitle({
+    text: textNormalized,
+    startTitle: "III IDENTIFICACIÓN DE NEE",
+    endTitle: "IV FIRMA DE LOS RESPONSABLES DEL PROCESO DE EVALUACIÓN DIAGNÓSTICA INTEGRAL",
+  })
+  if(!chunkNeeIdentificationText) return undefined;
 
-export interface CognitiveAttention {
-  sustained: boolean;
-  selective: boolean;
-  processingSpeed: boolean;
+  const cognitiveDomain = CognitiveDomainMapper.map(chunkNeeIdentificationText);
 
-}
+  return {
+    cognitive: cognitiveDomain,
+  }
+  
 
-export interface CognitiveMemory {
-  shortTerm: boolean;
-  mediumTerm: boolean;
-  longTerm: boolean;
-}
-
-export interface CognitiveExecutiveFunctions extends WithOther {
-  workingMemory: boolean;
-  planning: boolean;
-  reasoning: boolean;
-  flexibility: boolean;
-  problemSolving: boolean;
-}
+};

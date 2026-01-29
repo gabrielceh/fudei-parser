@@ -25,7 +25,7 @@ async function main() {
 
   // 🔹 Desde archivo local
   if(nodeEnv === "development"){
-    currentFile = file2;
+    currentFile = file1;
     result = await readPdfFromFile(currentFile.path);
   }else{
     // 🔹 Desde URL

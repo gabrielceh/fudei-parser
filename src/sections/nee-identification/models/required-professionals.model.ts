@@ -8,8 +8,8 @@ export interface RequiredProfessionals {
   speechTherapist: ProfessionalRequirement;
   occupationalTherapist: ProfessionalRequirement;
   kinesiologist: ProfessionalRequirement;
-  other: ProfessionalRequirement;
-  observations: string;                    // Profesión
+  other: ProfessionalRequirement;                  // Profesión  
+  observations: string;                    
 }
 
 export interface ProfessionalRequirement {

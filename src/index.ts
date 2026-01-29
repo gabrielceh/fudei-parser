@@ -8,6 +8,7 @@ import { readPdfFromUrl } from "./pdf/read-from-url";
 import { generalBackgroundSection } from "./sections/general-background/general-background-section";
 import { summarySection } from "./sections/summary/summary-section";
 import { neeIdentificationSection } from "./sections/nee-identification/nee-identification-section";
+import { signaturesSection } from "./sections/signatures/sigantures-section";
 
 const file1 = {path: "C:\/Users\/gach0\/OneDrive\/Desktop\/proyectos\/scraping-pdf-fudei\/pdfs\/FU_21498364.pdf", name: "FU_21498364"};
 const file2 = {path:"./pdfs/FU_26166005.pdf", name: "FU_26166005"};
@@ -39,6 +40,7 @@ async function main() {
   const generalBackground = generalBackgroundSection(result.text);
   const summary = summarySection(textWithoutFooter);
   const neeIdentification = neeIdentificationSection(textWithoutFooter);
+  const signatures = signaturesSection(textWithoutFooter);
 
   const fudei = {
     generalBackground,

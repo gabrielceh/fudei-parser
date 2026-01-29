@@ -30,6 +30,7 @@ export const neeIdentificationSection = (text: string): NeeIdentificationSection
     communication: communicationDomain,
     sensoryPerceptual: sensoryPerceptualDomain,
     psychomotor: psychomotorDomain,
+    affectiveSocial: affectiveSocialDomain,
   }
   
 

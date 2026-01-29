@@ -7,6 +7,7 @@ import { CurricularDomainMapper } from "./mappers/curricular-domain.mapper";
 import { EmotionalDomainMapper } from "./mappers/emotional-domain.mapper";
 import { FamilyDomainMapper } from "./mappers/family-domain.mapper";
 import { LanguageDomainMapper } from "./mappers/language-domain.mapper";
+import { LearningObjectivesAdjustmentsMapper } from "./mappers/learning-objectives-adjustments.mapper";
 import { OtherDomainMapper } from "./mappers/other-domain.mapper";
 import { PsychomotorDomainMapper } from "./mappers/psychomotor-domain.mapper";
 import { RequiredProfessionalsMapper } from "./mappers/required-professionals.mapper";
@@ -35,6 +36,7 @@ export const neeIdentificationSection = (text: string): NeeIdentificationSection
   const otherDomain = OtherDomainMapper.map(chunkNeeIdentificationText);
   const studentStrengths = StudentStrengthsMapper.map(chunkNeeIdentificationText);
   const requiredProfessionals = RequiredProfessionalsMapper.map(chunkNeeIdentificationText);
+  const learningObjectivesAdjustments = LearningObjectivesAdjustmentsMapper.map(chunkNeeIdentificationText);
 
   return {
     cognitive: cognitiveDomain,
@@ -49,6 +51,7 @@ export const neeIdentificationSection = (text: string): NeeIdentificationSection
     otherDomain: otherDomain,
     studentStrengths: studentStrengths,
     requiredProfessionals: requiredProfessionals,
+    learningObjectivesAdjustments: learningObjectivesAdjustments,
   }
   
 

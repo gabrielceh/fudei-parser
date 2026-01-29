@@ -1,5 +1,4 @@
 import { match } from "../../../helpers/match.helper";
-import { CommunicationDomain } from "../models/communication-domain.model";
 import { SensoryPerceptualDomain } from "../models/sensory-perceptual-domain.model";
 
 const bool = (v?: string) => v?.toUpperCase() === "SI";

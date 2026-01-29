@@ -38,11 +38,12 @@ async function main() {
   const textWithoutFooter = removeHeaderFooter(result.text);
   const generalBackground = generalBackgroundSection(result.text);
   const summary = summarySection(textWithoutFooter);
-  neeIdentificationSection(textWithoutFooter);
+  const neeIdentification = neeIdentificationSection(textWithoutFooter);
 
   const fudei = {
     generalBackground,
     summary,
+    neeIdentification,
   }
 
   await saveContentInJson({data: fudei, fileName: currentFile.name});

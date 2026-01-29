@@ -1,10 +1,7 @@
+import { match } from "../../../helpers/match.helper";
 import { CognitiveDomain } from "../models/cognitive-domain.model";
 
-
 const bool = (v?: string) => v?.toUpperCase() === "SI";
-
-const match = (regex: RegExp, text: string) =>
-  regex.exec(text)?.[1];
 
 export const extractCognitiveDomain = (
   text: string
@@ -77,7 +74,7 @@ export const extractCognitiveDomain = (
     match(/Resolución de problemas:\s*(SI|NO)/i, text)
   );
   // 🔹 Funciones ejecutivas otro
-  result.executiveFunctions.other = match(/Otro:\s*([^\n]+)/i, text)?.trim();
+  result.executiveFunctions.other = match(/Otro:\s*([^\n]+)/i, text)?.trim() || "";
 
 
   return result;

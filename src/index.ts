@@ -46,6 +46,7 @@ async function main() {
     generalBackground,
     summary,
     neeIdentification,
+    signatures,
   }
 
   await saveContentInJson({data: fudei, fileName: currentFile.name});

@@ -1,5 +1,5 @@
 export interface Signatory {
-  fullName: string;
+  fullName?: string;
   phone?: string;
   email?: string;
 }

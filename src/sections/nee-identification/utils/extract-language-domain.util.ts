@@ -1,6 +1,5 @@
 import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
 import { match } from "../../../helpers/match.helper";
-import { CognitiveDomain } from "../models/cognitive-domain.model";
 import { LanguageDomain } from "../models/language-domain.model";
 
 const bool = (v?: string) => v?.toUpperCase() === "SI";

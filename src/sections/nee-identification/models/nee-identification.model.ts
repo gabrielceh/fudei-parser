@@ -1,6 +1,6 @@
 import { AffectiveSocialDomain } from "./affective-social-domain.model";
 import { CognitiveDomain } from "./cognitive-domain.model";
-import { CommunicationDomain } from "./comunucation-domain.model";
+import { CommunicationDomain } from "./communication-domain.model";
 import { EmotionalDomain } from "./emotional-domain.model";
 import { LanguageDomain } from "./language-domain.model";
 import { PsychomotorDomain } from "./psychomotor-domain.model";

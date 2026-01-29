@@ -15,9 +15,6 @@ export class FamilyDomainMapper {
       startTitle: "Indique qué apoyos requiere la familia para que el estudiante acceda, participe y progrese en su aprendizaje:",
     })
 
-    console.log(response);
-    
-
     return response ? response.replace(/\s+/g, " ").trim() : undefined;
   }
 }

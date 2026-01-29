@@ -5,6 +5,7 @@ import { CognitiveDomainMapper } from "./mappers/cognitive-domain.mapper";
 import { CommunicationDomainMapper } from "./mappers/communication-domain.mapper";
 import { CurricularDomainMapper } from "./mappers/curricular-domain.mapper";
 import { EmotionalDomainMapper } from "./mappers/emotional-domain.mapper";
+import { FamilyDomainMapper } from "./mappers/family-domain.mapper";
 import { LanguageDomainMapper } from "./mappers/language-domain.mapper";
 import { PsychomotorDomainMapper } from "./mappers/psychomotor-domain.mapper";
 import { SensoryPerceptualDomainMapper } from "./mappers/sensory-perceptual-domain.mapper";
@@ -27,6 +28,7 @@ export const neeIdentificationSection = (text: string): NeeIdentificationSection
   const affectiveSocialDomain = AffectiveSocialDomainMapper.map(chunkNeeIdentificationText);
   const emotionalDomain = EmotionalDomainMapper.map(chunkNeeIdentificationText);
   const curricularDomain = CurricularDomainMapper.map(chunkNeeIdentificationText);
+  const familyDomain = FamilyDomainMapper.map(chunkNeeIdentificationText);
 
   return {
     cognitive: cognitiveDomain,
@@ -37,6 +39,7 @@ export const neeIdentificationSection = (text: string): NeeIdentificationSection
     affectiveSocial: affectiveSocialDomain,
     emotional: emotionalDomain,
     curricular : curricularDomain,
+    family: familyDomain,
   }
   
 

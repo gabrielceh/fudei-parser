@@ -1,5 +1,6 @@
 import { extractSectionByTitle } from "../../helpers/extract-section-by-table.helper";
 import { normalizePdfText } from "../../helpers/normalize-pdf-text.helper";
+import { AffectiveSocialDomainMapper } from "./mappers/affective-social-domain.mapper";
 import { CognitiveDomainMapper } from "./mappers/cognitive-domain.mapper";
 import { CommunicationDomainMapper } from "./mappers/communication-domain.mapper";
 import { LanguageDomainMapper } from "./mappers/language-domain.mapper";
@@ -21,12 +22,14 @@ export const neeIdentificationSection = (text: string): NeeIdentificationSection
   const communicationDomain = CommunicationDomainMapper.map(chunkNeeIdentificationText);
   const sensoryPerceptualDomain = SensoryPerceptualDomainMapper.map(chunkNeeIdentificationText);
   const psychomotorDomain = PsychomotorDomainMapper.map(chunkNeeIdentificationText);
+  const affectiveSocialDomain = AffectiveSocialDomainMapper.map(chunkNeeIdentificationText);
 
   return {
     cognitive: cognitiveDomain,
     language: languageDomain,
     communication: communicationDomain,
     sensoryPerceptual: sensoryPerceptualDomain,
+    psychomotor: psychomotorDomain,
   }
   
 

@@ -1,8 +1,9 @@
 import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { PsychomotorDomain } from "../models/psychomotor-domain.model";
 import { extractPsychomotorDomain } from "../utils/extract-psychomotor-domain.util";
 
 export class PsychomotorDomainMapper {
-  static map(text: string): any {
+  static map(text: string): PsychomotorDomain | undefined {
     const chunkPsychomotorText = extractSectionByTitle({
       text: text,
       startTitle: "Ámbito Psicomotor",
@@ -13,7 +14,7 @@ export class PsychomotorDomainMapper {
 
     const psychomotorDomain = extractPsychomotorDomain(chunkPsychomotorText);
 
-    console.log(psychomotorDomain);
+    return psychomotorDomain;
     
   }
 }

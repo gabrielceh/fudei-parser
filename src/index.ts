@@ -1,5 +1,3 @@
-import path from "path";
-import { ENVIRONMENTS } from "./const/environments";
 import { removeHeaderFooter } from "./helpers/remove-footer-pdf.herlper";
 import { saveContentInJson } from "./helpers/save-content-json";
 import { ParsedPdf } from "./pdf/parse-pdf";
@@ -13,45 +11,72 @@ import { signaturesSection } from "./sections/signatures/sigantures-section";
 const file1 = {path: "C:\/Users\/gach0\/OneDrive\/Desktop\/proyectos\/scraping-pdf-fudei\/pdfs\/FU_21498364.pdf", name: "FU_21498364"};
 const file2 = {path:"./pdfs/FU_26166005.pdf", name: "FU_26166005"};
 
-const nodeEnv = ENVIRONMENTS.NODE_ENV;
 
-async function main() {
-  let result:ParsedPdf = {
-    text: "",
-    numPages: 0,
-    info: undefined,
-    metadata: undefined,
-  }
-  let currentFile:{path: string, name: string} = {path: "", name: ""};
-
-  // 🔹 Desde archivo local
-  if(nodeEnv === "development"){
-    currentFile = file2;
-    result = await readPdfFromFile(currentFile.path);
-  }else{
-    // 🔹 Desde URL
-    // const result = await readPdfFromUrl("https://example.com/archivo.pdf");
-  }
-
-
-  // console.log("Páginas:", result.numPages);
-  // console.log("Texto:", result.text);
-  const textWithoutFooter = removeHeaderFooter(result.text);
-  const generalBackground = generalBackgroundSection(result.text);
-  const summary = summarySection(textWithoutFooter);
-  const neeIdentification = neeIdentificationSection(textWithoutFooter);
-  const signatures = signaturesSection(textWithoutFooter);
-
-  const fudei = {
-    generalBackground,
-    summary,
-    neeIdentification,
-    signatures,
-  }
-
-  await saveContentInJson({data: fudei, fileName: currentFile.name});
-
-  return fudei;
+interface FudeiScraperOptions {
+  saveJson?: boolean;
+  fileName?: string;
+  outputPath?: string;
 }
 
-main().catch(console.error);
+export class FudeiPdfScraper {
+  private source: string;
+  private options: FudeiScraperOptions;
+
+  constructor(source: string, options: FudeiScraperOptions = {}) {
+    this.source = source;
+    this.options = options;
+  }
+
+  private isUrl(): boolean {
+    return /^https?:\/\//i.test(this.source);
+  }
+
+  private async readPdf(): Promise<ParsedPdf> {
+    return this.isUrl()
+      ? readPdfFromUrl(this.source)
+      : readPdfFromFile(this.source);
+  }
+
+  private getFileName(): string {
+    if (this.options.fileName) return this.options.fileName;
+    // fallback automático
+    const parts = this.source.split("/");
+    return parts[parts.length - 1].replace(".pdf", "");
+  }
+
+  async parse() {
+    const result = await this.readPdf();
+
+    const textWithoutFooter = removeHeaderFooter(result.text);
+
+    const fudei = {
+      generalBackground: generalBackgroundSection(result.text),
+      summary: summarySection(textWithoutFooter),
+      neeIdentification: neeIdentificationSection(textWithoutFooter),
+      signatures: signaturesSection(textWithoutFooter),
+    };
+
+   if (this.options.saveJson) {
+      if (!this.options.outputPath) {
+        throw new Error("outputPath is required when saveJson is enabled");
+      }
+
+      await saveContentInJson({
+        data: fudei,
+        fileName: this.getFileName(),
+        outputPath: this.options.outputPath,
+      });
+    }
+
+    return fudei;
+  }
+}
+
+(async() => {
+  const scraper = new FudeiPdfScraper(
+    file1.path,
+    // "https://ontheline.trincoll.edu/images/bookdown/sample-local-pdf.pdf", 
+    {saveJson: true, fileName: file1.name, outputPath:"./json"});
+  const fudei = await scraper.parse();
+  console.log(fudei);
+})();

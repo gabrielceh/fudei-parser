@@ -1,6 +1,7 @@
 
 import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
 import { normalizePdfText } from "../../../helpers/normalize-pdf-text.helper";
+import { normalizeWhitespace } from "../../../helpers/normalize-white-space.helper";
 
 export class ObservationsSummaryMapper {
   static map(text: string): string | undefined {  
@@ -12,16 +13,9 @@ export class ObservationsSummaryMapper {
     let chunkPreviousObservations = extractSectionByTitle({
       text: text!!,
       startTitle: "Observaciones",
-    });
-
-
-    console.log({chunkPreviousObservations});
-    
-
-    const textNormalized = normalizePdfText(text);  
-    const observationsText = textNormalized.split("Observaciones")[1]
+    });    
         
-    return observationsText || "";
+    return normalizeWhitespace(chunkPreviousObservations || "");
     
   }
 

@@ -1,4 +1,5 @@
 import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { normalizeWhitespace } from "../../../helpers/normalize-white-space.helper";
 
 export class HealthAssessmentMapper {
   static map(text: string) {   
@@ -8,7 +9,7 @@ export class HealthAssessmentMapper {
       endTitle: "Evaluación Psicoeducativa",
     });
 
-    return healthAssessmentText?.replace(/\s+/g, " ").trim() || "";
+    return normalizeWhitespace(healthAssessmentText || "");
     
   }
 

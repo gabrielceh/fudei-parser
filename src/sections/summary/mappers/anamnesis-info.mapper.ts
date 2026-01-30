@@ -1,5 +1,6 @@
 import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
 import { normalizePdfText } from "../../../helpers/normalize-pdf-text.helper";
+import { normalizeWhitespace } from "../../../helpers/normalize-white-space.helper";
 import { AnamnesisInfo } from "../models/anamnesis.model";
 
 export class AnamnesisInfoMapper {
@@ -26,8 +27,8 @@ export class AnamnesisInfoMapper {
     });
 
     return({
-      relevantBackground: chunckRelevantBackground ? chunckRelevantBackground.replace(/\s+/g, " ") : "", 
-      spanishLanguageLevel: chunkSpanishLanguageLevel ? chunkSpanishLanguageLevel.replace(/\s+/g, " ") : "",
+      relevantBackground: normalizeWhitespace(chunckRelevantBackground|| ""), 
+      spanishLanguageLevel: normalizeWhitespace(chunkSpanishLanguageLevel || ""),
     });
     
     

@@ -1,4 +1,5 @@
 import { match } from "../../../helpers/match.helper";
+import { normalizeWhitespace } from "../../../helpers/normalize-white-space.helper";
 import { PsychomotorDomain } from "../models/psychomotor-domain.model";
 
 const bool = (v?: string) => v?.toUpperCase() === "SI";
@@ -63,7 +64,7 @@ export const extractPsychomotorDomain = (
   );
 
   // 🔹 Otro
-  result.other = match(/Otro:\s*([\s\S]*)/i, text)?.replace(/\s+/g, " ")?.trim() || "";
+  result.other = normalizeWhitespace(match(/Otro:\s*([\s\S]*)/i, text) || "");
 
 
   return result;

@@ -1,5 +1,6 @@
 import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
 import { match } from "../../../helpers/match.helper";
+import { normalizeWhitespace } from "../../../helpers/normalize-white-space.helper";
 import { RequiredProfessionals } from "../models/required-professionals.model";
 
 const bool = (v?: string) => v?.toUpperCase() === "SI";
@@ -50,11 +51,11 @@ export const extractRequiredProfessionalsDomain = (
     match(/Profesor de Educación Especial\/Diferencial:\s*(SI|NO)/i, text)
   );
   // 🔹 Profesor de Educación Especial/Diferencial Mencin
-  result.specialEducationTeacher.detail = extractSectionByTitle({
+  result.specialEducationTeacher.detail = normalizeWhitespace(extractSectionByTitle({
     text: text,
     startTitle: "Mención:",
     endTitle: "Profesor de Asignatura:",
-  })?.replace(/\s+/g, " ")?.trim() || "";
+  }) || "");
 
   // 🔹 Profesor de Asignatura
   result.subjectTeacher.required = bool(
@@ -114,14 +115,14 @@ export const extractRequiredProfessionalsDomain = (
     match(/Otro:\s*(SI|NO)/i, text)
   );
   // 🔹 Otro Profesión
-  result.other.detail = extractSectionByTitle({
+  result.other.detail = normalizeWhitespace(extractSectionByTitle({
     text: text,
     startTitle: "Profesión:",
     endTitle: "Observaciones:",
-  })?.replace(/\s+/g, " ")?.trim() || "";
+  }) || "");
  
   // 🔹 Observaciones
-  result.observations = match(/Observaciones:\s*([\s\S]*)/i, text)?.replace(/\s+/g, " ")?.trim() || "";
+  result.observations = normalizeWhitespace(match(/Observaciones:\s*([\s\S]*)/i, text) || "");
 
 
   return result;

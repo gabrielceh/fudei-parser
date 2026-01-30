@@ -1,6 +1,7 @@
 import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
 import { match } from "../../../helpers/match.helper";
 import { normalizePdfText } from "../../../helpers/normalize-pdf-text.helper";
+import { normalizeWhitespace } from "../../../helpers/normalize-white-space.helper";
 import { ContextFactors, FamilyAndSchoolContext } from "../models/family-and-school-context.model";
 
 
@@ -53,8 +54,8 @@ export class FamilySchoolContextMapper {
     });
 
     return{
-      strengths: chunkStrengths?.replace(/\s+/g, " ") ?? "",
-      difficulties: chunkDifficulties?.replace(/\s+/g, " ") ??"",
+      strengths: normalizeWhitespace(chunkStrengths ?? ""),
+      difficulties: normalizeWhitespace(chunkDifficulties ?? ""),
     }
   }
 

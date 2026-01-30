@@ -1,4 +1,5 @@
 import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { normalizeWhitespace } from "../../../helpers/normalize-white-space.helper";
 
 
 export class PsychoeducationalAssessmentMapper {
@@ -9,7 +10,7 @@ export class PsychoeducationalAssessmentMapper {
       endTitle: "Contexto Familiar y Escolar",
     });
 
-    return chunkPsychoeducationalAssessment?.replace(/\s+/g, " ").trim() || "";
+    return normalizeWhitespace(chunkPsychoeducationalAssessment || "");
     
   }
 

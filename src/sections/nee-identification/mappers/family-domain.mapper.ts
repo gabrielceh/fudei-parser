@@ -1,4 +1,5 @@
 import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { normalizeWhitespace } from "../../../helpers/normalize-white-space.helper";
 
 export class FamilyDomainMapper {
   static map(text: string): string | undefined {
@@ -15,6 +16,6 @@ export class FamilyDomainMapper {
       startTitle: "Indique qué apoyos requiere la familia para que el estudiante acceda, participe y progrese en su aprendizaje:",
     })
 
-    return response ? response.replace(/\s+/g, " ").trim() : undefined;
+    return response ? normalizeWhitespace(response) : undefined;
   }
 }

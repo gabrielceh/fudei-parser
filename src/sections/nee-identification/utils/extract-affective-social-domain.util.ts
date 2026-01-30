@@ -1,4 +1,5 @@
 import { match } from "../../../helpers/match.helper";
+import { normalizeWhitespace } from "../../../helpers/normalize-white-space.helper";
 import { AffectiveSocialDomain } from "../models/affective-social-domain.model";
 
 const bool = (v?: string) => v?.toUpperCase() === "SI";
@@ -43,7 +44,7 @@ export const extractAffectiveSocialDomain = (
   );
 
   // 🔹 Otro
-  result.other = match(/Otro\s*([\s\S]*)/, text)?.replace(/\s+/g, " ")?.trim() || "";
+  result.other = normalizeWhitespace(match(/Otro\s*([\s\S]*)/, text) || "");
 
 
   return result;

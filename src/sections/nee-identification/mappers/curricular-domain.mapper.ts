@@ -1,4 +1,5 @@
 import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { normalizeWhitespace } from "../../../helpers/normalize-white-space.helper";
 
 export class CurricularDomainMapper {
   static map(text: string): string | undefined {
@@ -15,6 +16,6 @@ export class CurricularDomainMapper {
       startTitle: "Indique en qué asignaturas el\/la estudiante requiere apoyo:",
     })
 
-    return response ? response.replace(/\s+/g, " ").trim() : undefined;
+    return response ? normalizeWhitespace(response) : undefined;
   }
 }

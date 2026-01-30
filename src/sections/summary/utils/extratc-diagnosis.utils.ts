@@ -1,4 +1,5 @@
 import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { normalizeWhitespace } from "../../../helpers/normalize-white-space.helper";
 import { DiagnosisInfo, NeeType } from "../models/diagnosis.model";
 
 export const extractDiagnosis = (text: string): DiagnosisInfo => {
@@ -21,11 +22,11 @@ export const extractDiagnosis = (text: string): DiagnosisInfo => {
   }) || "") as NeeType;
 
   // 🔹 Diagnóstico
-  result.diagnosis = extractSectionByTitle({
+  result.diagnosis = normalizeWhitespace(extractSectionByTitle({
     text: text,
     startTitle: "Diagnóstico:",
     endTitle: "Tipo o Grado:",
-  }) || "";
+  }) || "");
   
   // 🔹 Tipo o Grado
   result.degreeOrType = extractSectionByTitle({

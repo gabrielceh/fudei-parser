@@ -1,4 +1,5 @@
 import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { normalizeWhitespace } from "../../../helpers/normalize-white-space.helper";
 
 export class StudentStrengthsMapper {
   static map(text: string): string | undefined {
@@ -10,6 +11,6 @@ export class StudentStrengthsMapper {
 
     if(!chunkStudentStrengths) return undefined;
 
-    return chunkStudentStrengths.replace(/\s+/g, " ").trim();
+    return normalizeWhitespace(chunkStudentStrengths);
   }
 }

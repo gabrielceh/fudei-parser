@@ -1,4 +1,5 @@
 import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { normalizeWhitespace } from "../../../helpers/normalize-white-space.helper";
 
 export class OtherDomainMapper {
   static map(text: string): string | undefined {
@@ -10,6 +11,6 @@ export class OtherDomainMapper {
 
     if(!chunkOtherDomainText) return undefined;
 
-    return chunkOtherDomainText.replace(/\s+/g, " ").trim();
+    return normalizeWhitespace(chunkOtherDomainText);
   }
 }

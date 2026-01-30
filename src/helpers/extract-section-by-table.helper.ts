@@ -5,9 +5,6 @@ interface Args {
   endTitle?: string;
 }
 
-const escapeRegex = (value: string) =>
-  value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-
 /**
  * Extrae una sección de texto delimitada por un título inicial y, opcionalmente,
  * un título final. La búsqueda es sensible a mayúsculas/minúsculas y los títulos
@@ -30,8 +27,8 @@ const escapeRegex = (value: string) =>
  * Retorna `undefined` si no se encuentra el `startTitle`.
  */
 export const extractSectionByTitle = ({startTitle, text, endTitle}:Args): string | undefined => {
-  const safeStart = escapeRegex(startTitle.trim());
-  const safeEnd = endTitle && escapeRegex(endTitle.trim());
+  const safeStart = (startTitle.trim());
+  const safeEnd = endTitle && (endTitle.trim());
 
   const pattern = safeEnd
     ? `${safeStart}([\\s\\S]*?)(?=${safeEnd}|$)`

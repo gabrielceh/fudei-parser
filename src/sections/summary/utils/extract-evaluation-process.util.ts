@@ -1,6 +1,9 @@
 import { EvaluationProcesses } from "../models/multidisciplinary-team.model";
 
-const bool = (v?: string) => v?.toUpperCase() === "SI";
+const bool = (v?: string) => {
+  if(!v) return undefined;
+  return v?.toUpperCase() === "SI";
+}
 
 const match = (regex: RegExp, text: string) =>
   regex.exec(text)?.[1];
@@ -22,7 +25,7 @@ export const extractEvaluationProcesses = (
   // 🔹 Entrevista
   result.interview = bool(
     match(/Entrevista:\s*(SI|NO)/i, text)
-  );
+  ) ?? false;
 
   if (result.interview) {
     result.interviewTarget =
@@ -40,7 +43,7 @@ export const extractEvaluationProcesses = (
       /Instrumentos Estandarizados\s*\/\s*Procedimientos:\s*(SI|NO)/i,
       text
     )
-  );
+  ) ?? false;
 
   if (result.standardizedInstruments) {
     result.standardizedInstrumentsDetails =
@@ -80,7 +83,7 @@ export const extractEvaluationProcesses = (
   // 🔹 Otro (EL PROBLEMA ORIGINAL)
   result.other = bool(
     match(/Otro:\s*(SI|NO)/i, text)
-  );
+  ) ?? false;
 
   if (result.other) {
     result.otherDetails =

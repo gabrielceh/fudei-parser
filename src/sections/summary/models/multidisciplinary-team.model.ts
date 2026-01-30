@@ -1,12 +1,12 @@
 export interface MultidisciplinaryTeam {
-  mandatoryProfessionals: ProfessionalEvaluation[];
+  mandatoryProfessionals?: ProfessionalEvaluation[];
   otherProfessionals?: ProfessionalEvaluation[];
 }
 
 
 export interface ProfessionalEvaluation {
-  professional: ProfessionalInfo;
-  processes: EvaluationProcesses;
+  professional?: ProfessionalInfo;
+  processes?: EvaluationProcesses;
 }
 
 export interface ProfessionalInfo {

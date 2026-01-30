@@ -1,4 +1,4 @@
-export type NeeType = "NEE" | "NEEP" | "NEET";
+export type NeeType = "NEE" | "NEEP" | "NEET" | "";
 
 export interface DiagnosisInfo {
   neeType: NeeType;

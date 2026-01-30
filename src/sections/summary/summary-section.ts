@@ -1,3 +1,4 @@
+import { extractSectionByTitle } from "../../helpers/extract-section-by-table.helper";
 import { AnamnesisInfoMapper } from "./mappers/anamnesis-info.mapper";
 import { DiagnosisInfoMapper } from "./mappers/diagnosis-info.mapper";
 import { FamilySchoolContextMapper } from "./mappers/family-school-context.mapper";
@@ -8,10 +9,16 @@ import { PsychoeducationalAssessmentMapper } from "./mappers/psycho-educational-
 import { Summary } from "./models/summary.model";
 
 
-export const summarySection = (text:string):Summary => {
-  const sumamrySectionText = text
-    .split("II RESUMEN DEL PROCESO DE EVALUACION INTEGRAL E INTERDISCIPLINARIA")[1]
-    .split("III IDENTIFICACIÓN DE NEE")[0]
+export const summarySection = (text:string):Summary | undefined => {
+  const textNormalized = text.replace(/\r/g, "");
+
+  const sumamrySectionText = extractSectionByTitle({
+    text: textNormalized,
+    startTitle: "II RESUMEN DEL PROCESO DE EVALUACION INTEGRAL E INTERDISCIPLINARIA",
+    endTitle: "III IDENTIFICACIÓN DE NEE",
+  })
+
+  if(!sumamrySectionText) return undefined;
   
   const diagnosis = DiagnosisInfoMapper.map(sumamrySectionText);
   const multidisciplinaryTeam = MultidisciplinaryTeamMapper.map(sumamrySectionText);

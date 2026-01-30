@@ -1,4 +1,4 @@
 export interface AnamnesisInfo {
-  relevantBackground: string;
+  relevantBackground?: string;
   spanishLanguageLevel?: string;
 }

@@ -1,16 +1,15 @@
-import { match } from "../../../helpers/match.helper";
-import { normalizePdfText } from "../../../helpers/normalize-pdf-text.helper";
+import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+
 
 export class PsychoeducationalAssessmentMapper {
   static map(text: string) {  
-    const textNormalized = normalizePdfText(text);  
-    const psychoeducationalAssessmentText =
-      match(
-        /Evaluación Psicoeducativa ([\s\S]*?)(?=Contexto Familiar y Escolar)/i,
-        textNormalized
-      )?.trim();
-    
-    return psychoeducationalAssessmentText || "";
+    const chunkPsychoeducationalAssessment = extractSectionByTitle({
+      text: text,
+      startTitle: "Evaluación Psicoeducativa",
+      endTitle: "Contexto Familiar y Escolar",
+    });
+
+    return chunkPsychoeducationalAssessment?.replace(/\s+/g, " ").trim() || "";
     
   }
 

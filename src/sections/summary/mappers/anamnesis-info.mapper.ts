@@ -1,33 +1,33 @@
-import { match } from "../../../helpers/match.helper";
+import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
 import { normalizePdfText } from "../../../helpers/normalize-pdf-text.helper";
 import { AnamnesisInfo } from "../models/anamnesis.model";
 
 export class AnamnesisInfoMapper {
-  static map(text: string): AnamnesisInfo {  
-    const textNormalized = normalizePdfText(text);  
-    const anamnesisBackground =
-      match(
-        /Antecedentes relevantes de la Anamnesis([\s\S]*?)(?=Valoración de Salud)/i,
-        textNormalized
-      )?.trim();
-    
-    if(!anamnesisBackground) return {
-      relevantBackground: "",
-      spanishLanguageLevel: "",
-    };
-    
-    const spanishLanguageLevelTitle = "Si el o la estudiante no es usuario habitual del español, consigne el nivel de español que maneja tanto en la comprensión como en la expresión oral y/o escrita:\n"  
-  
-    const relevantBackground = match(
-      /Anamnesis:\s*([\s\S]*?)(?=Si el o la estudiante no es usuario habitual del español)/i,
-      anamnesisBackground
-    );
+  static map(text: string): AnamnesisInfo | undefined {  
+    const textNormalized = normalizePdfText(text);
 
-    const spanishLanguageLevel = anamnesisBackground.split(spanishLanguageLevelTitle)[1]
+    const chunkAnamnesis = extractSectionByTitle({
+      text: textNormalized,
+      startTitle: "Antecedentes relevantes de la Anamnesis",
+      endTitle: "Valoración de Salud",
+    });
+    
+    if(!chunkAnamnesis) return undefined;
+
+    const chunckRelevantBackground = extractSectionByTitle({
+      text: chunkAnamnesis,
+      startTitle: "que impacte en el\\s*aprendizaje, según datos recogidos en la entrevista de la Anamnesis:",
+      endTitle: "Si el o la estudiante no es usuario habitual del español",
+    });
+
+    const chunkSpanishLanguageLevel = extractSectionByTitle({
+      text: chunkAnamnesis,
+      startTitle: "Si el o la estudiante no es usuario habitual del español, consigne el nivel de español que maneja tanto en la\\s*comprensión como en la expresión oral y/o escrita:",
+    });
 
     return({
-      relevantBackground: relevantBackground ? normalizePdfText(relevantBackground) : "", 
-      spanishLanguageLevel: spanishLanguageLevel ? normalizePdfText(spanishLanguageLevel) : "",
+      relevantBackground: chunckRelevantBackground ? chunckRelevantBackground.replace(/\s+/g, " ") : "", 
+      spanishLanguageLevel: chunkSpanishLanguageLevel ? chunkSpanishLanguageLevel.replace(/\s+/g, " ") : "",
     });
     
     

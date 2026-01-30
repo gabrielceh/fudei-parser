@@ -1,4 +1,5 @@
 import { extractSectionByTitle } from "../../helpers/extract-section-by-table.helper";
+import { normalizePdfText } from "../../helpers/normalize-pdf-text.helper";
 import { AnamnesisInfoMapper } from "./mappers/anamnesis-info.mapper";
 import { DiagnosisInfoMapper } from "./mappers/diagnosis-info.mapper";
 import { FamilySchoolContextMapper } from "./mappers/family-school-context.mapper";
@@ -10,7 +11,7 @@ import { Summary } from "./models/summary.model";
 
 
 export const summarySection = (text:string):Summary | undefined => {
-  const textNormalized = text.replace(/\r/g, "");
+  const textNormalized = normalizePdfText(text);
 
   const sumamrySectionText = extractSectionByTitle({
     text: textNormalized,

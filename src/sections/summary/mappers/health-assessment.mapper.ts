@@ -1,16 +1,14 @@
-import { match } from "../../../helpers/match.helper";
-import { normalizePdfText } from "../../../helpers/normalize-pdf-text.helper";
+import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
 
 export class HealthAssessmentMapper {
-  static map(text: string) {  
-    const textNormalized = normalizePdfText(text);  
-    const healthAssessmentText =
-      match(
-        /Valoración de Salud([\s\S]*?)(?=Evaluación Psicoeducativa)/i,
-        textNormalized
-      )?.trim();
-    
-    return healthAssessmentText || "";
+  static map(text: string) {   
+    const healthAssessmentText = extractSectionByTitle({
+      text: text,
+      startTitle: "Valoración de Salud",
+      endTitle: "Evaluación Psicoeducativa",
+    });
+
+    return healthAssessmentText?.replace(/\s+/g, " ").trim() || "";
     
   }
 

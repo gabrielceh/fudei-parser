@@ -1,22 +1,31 @@
-import { extractTableFields } from "../../../helpers/extract-table-fields.helper";
+import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
 import { EstablishmentIdentification,  } from "../models/general-background.interface";
-import { ESTABLISHMENT_FIELD_LABELS } from "../utils/establishment-field-labels.util";
+import { extractEstablishment } from "../utils/extract-establishment.utils";
 
 
 
 export class EstablishmenteGeneralBackgroundMapper {
 
-  static map(text: string): EstablishmentIdentification {
-    const textSlitep = text.split("Antecedentes de Identificación del Establecimiento")[1].trim();
-    const raw = extractTableFields(textSlitep, ESTABLISHMENT_FIELD_LABELS);
+  static map(text: string): EstablishmentIdentification | undefined {
+    const chunckEstablishmentGeneralBackground = extractSectionByTitle({
+      text: text,
+      startTitle: "Antecedentes de Identificación del Establecimiento",
+    })
+
+    if(!chunckEstablishmentGeneralBackground) return undefined;
+
+    const establishment = extractEstablishment(chunckEstablishmentGeneralBackground);
+
+    return establishment;
+  //   const raw = extractTableFields(chunckEstablishmentGeneralBackground, ESTABLISHMENT_FIELD_LABELS);
     
-    return {
-      address: raw.address ?? "",
-      name: raw.name ?? "",
-      dependencyType: raw.dependencyType ?? "",
-      rbd: raw.rbd ?? "",
-      region: raw.region ?? "",
-      commune: raw.commune ?? "", 
-   };
+  //   return {
+  //     name: raw.name ?? "",
+  //     dependencyType: raw.dependencyType ?? "",
+  //     rbd: raw.rbd ?? "",
+  //     address: raw.address ?? "",
+  //     region: raw.region ?? "",
+  //     commune: raw.commune ?? "", 
+  //  };
   }
 }

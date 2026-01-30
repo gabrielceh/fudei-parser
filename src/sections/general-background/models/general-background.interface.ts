@@ -1,3 +1,8 @@
+export interface GeneralBackground {
+  student?: StudentIdentification;
+  establishment?: EstablishmentIdentification;
+}
+
 export interface StudentIdentification {
   fullName: string;
   nationality: string;
@@ -29,7 +34,4 @@ export interface EstablishmentIdentification {
   commune: string;
 }
 
-export interface GeneralBackground {
-  student: StudentIdentification;
-  establishment: EstablishmentIdentification;
-}
+

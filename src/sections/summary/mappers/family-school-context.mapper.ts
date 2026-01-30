@@ -1,53 +1,60 @@
+import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
 import { match } from "../../../helpers/match.helper";
 import { normalizePdfText } from "../../../helpers/normalize-pdf-text.helper";
 import { ContextFactors, FamilyAndSchoolContext } from "../models/family-and-school-context.model";
 
 
 export class FamilySchoolContextMapper {
-  static map(text: string): FamilyAndSchoolContext  {  
-    const textNormalized = normalizePdfText(text);  
-    const familySchoolChunk =
-      match(
-        /Contexto Familiar y Escolar([\s\S]*?)(?=Observaciones)/i,
-        textNormalized
-      )?.trim();
+  static map(text: string): FamilyAndSchoolContext | undefined  {  
+    const textNormalized = normalizePdfText(text);
+    const chunkFamilySchoolContext = extractSectionByTitle({
+      text: text,
+      startTitle: "Contexto Familiar y Escolar",
+      endTitle: "Observaciones",
+    });
+
+    if(!chunkFamilySchoolContext) return undefined;
+
+    const chunkFamilyContext = extractSectionByTitle({
+      text: chunkFamilySchoolContext,
+      startTitle: "Describa aspectos del Contexto Familiar que:",
+      endTitle: "Describa aspectos del Contexto Escolar que:",
+    });
+
+    const chunkSchoolContext = extractSectionByTitle({
+      text: chunkFamilySchoolContext,
+      startTitle: "Describa aspectos del Contexto Escolar que:",
+      endTitle: "Observaciones",
+    });
 
     let familyContext: ContextFactors = {difficulties:"", strengths:""};
     let schoolContext: ContextFactors = {difficulties:"", strengths:""};
 
-    if(!familySchoolChunk) return {
-      family: familyContext,
-      school: schoolContext,
-    };
-    
-    const familyChunk = match(
-      /Describa aspectos del Contexto Familiar que:([\s\S]*?)(?=Describa aspectos del Contexto Escolar que:)/i,
-      familySchoolChunk
-    );
-    const schoolChunk = familySchoolChunk.split("Describa aspectos del Contexto Escolar que:")[1];
-
-    if(familyChunk){
-      familyContext = this.getContext(familyChunk);
+    if(chunkFamilyContext){
+      familyContext = this.getContext(chunkFamilyContext);
     }
 
-    if(schoolChunk){
-      schoolContext = this.getContext(schoolChunk);
+    if(chunkSchoolContext){
+      schoolContext = this.getContext(chunkSchoolContext);
     }
     
     return({family: familyContext, school: schoolContext});
   }
 
   private static getContext(text: string): ContextFactors {
-    const strengthsText = match(
-      /Favorecen el aprendizaje:([\s\S]*?)(?=Dificultan el aprendizaje:)/i,
-      text
-    )
-    const difficultiesArray = text.split("Dificultan el aprendizaje:");
-    const difficulties = difficultiesArray[difficultiesArray.length > 1 ? 1 : 0];
+    const chunkStrengths = extractSectionByTitle({
+      text: text,
+      startTitle: "Favorecen el aprendizaje:",
+      endTitle: "Dificultan el aprendizaje:",
+    });
+    const chunkDifficulties = extractSectionByTitle({
+      text: text,
+      startTitle: "Dificultan el aprendizaje:",
+    });
 
     return{
-      strengths: strengthsText ? normalizePdfText(strengthsText) : "",
-      difficulties: difficulties ? normalizePdfText(difficulties) : "",
+      strengths: chunkStrengths?.replace(/\s+/g, " ") ?? "",
+      difficulties: chunkDifficulties?.replace(/\s+/g, " ") ??"",
     }
   }
 

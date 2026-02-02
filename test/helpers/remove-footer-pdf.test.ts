@@ -1,7 +1,7 @@
 import { removeHeaderFooter } from "../../src/helpers/remove-footer-pdf.herlper";
 
 describe("removeHeaderFooter", () => {
-  it('elimina encabezado y pie de página del texto', () => {
+  it('should removes header and footer from text', () => {
     const input = `
       Este es el contenido antes del contenido a eliminar
       Fecha/Hora: 17-09-2024 23:13
@@ -17,7 +17,7 @@ describe("removeHeaderFooter", () => {
     );
   });
 
-  it('retorna el texto intacto si no hay header/footer', () => {
+  it('should return the text intact if there is no header/footer', () => {
     const input = 'Contenido sin encabezado ni pie';
 
     const result = removeHeaderFooter(input);
@@ -25,7 +25,7 @@ describe("removeHeaderFooter", () => {
     expect(result).toBe('Contenido sin encabezado ni pie');
   });
 
-  it('maneja variaciones de espacios y saltos de línea', () => {
+  it('should handle variations of spaces and line breaks', () => {
     const input = `Fecha/Hora: 02-12-2024 10:10   Fecha Cierre: 07-05-2024   Folio: ABCD-123
       Página: 1 / 2
       Texto importante`;

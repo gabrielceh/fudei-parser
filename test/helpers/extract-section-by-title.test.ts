@@ -1,7 +1,7 @@
 import { extractSectionByTitle } from "../../src/helpers/extract-section-by-table.helper";
 
 describe('extractSectionByTitle', () => {
-   it('extrae el texto entre startTitle y endTitle', () => {
+   it('should extract the text between startTitle and endTitle', () => {
     const text = `
 SECCIÓN I
 Contenido de la sección uno
@@ -23,7 +23,7 @@ línea dos`
     );
   });
 
-  it('extrae desde startTitle hasta el final si no se pasa endTitle', () => {
+  it('should extract from startTitle to end if endTitle is not passed', () => {
     const text = `
 INTRO
 texto inicial
@@ -46,7 +46,7 @@ línea tres`
     );
   });
 
-  it('retorna undefined si startTitle no existe en el texto', () => {
+  it('should return undefined if startTitle is not found in the text', () => {
     const text = `
 SECCIÓN A
 contenido
@@ -62,7 +62,7 @@ contenido
   });
 
 
-  it('ignora espacios en startTitle y endTitle', () => {
+  it('should ignore spaces in startTitle and endTitle', () => {
     const text = `
 TITULO INICIO
 contenido importante

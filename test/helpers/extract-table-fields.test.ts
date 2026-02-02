@@ -14,7 +14,7 @@ const labels: readonly LabelPattern<TestModel>[] = [
 ];
 
 describe('extractTableFields', () => {
-  it('extrae campos simples en orden', () => {
+  it('should extract fields in the order they appear', () => {
     const text = `
 Nombre: Juan Pérez
 Edad: 32
@@ -30,7 +30,7 @@ Dirección: Calle Falsa 123
     });
   });
 
-    it('extrae valores multilínea correctamente', () => {
+    it('should extract multiple fields', () => {
     const text = `
 Nombre: Juan
 Pérez Gómez
@@ -49,7 +49,7 @@ Falsa
     });
   });
 
-    it('maneja campos sin saltos de línea entre labels', () => {
+    it('should handles fields without line breaks between labels', () => {
     const text = `
 Nombre: Juan Pérez Edad: 32 Dirección: Calle Falsa 123
 `;
@@ -63,7 +63,7 @@ Nombre: Juan Pérez Edad: 32 Dirección: Calle Falsa 123
     });
   });
 
-    it('captura hasta el final cuando no hay más labels presentes', () => {
+    it('should capture until end when no more labels are present', () => {
     const text = `
 Nombre: Juan Pérez
 Edad: 32
@@ -78,7 +78,7 @@ Edad: 32
     });
   });
 
-    it('normaliza labels partidos por saltos de línea', () => {
+    it('should normalizes labels matches by line breaks', () => {
     const text = `
 Nom
 bre: Juan Pérez

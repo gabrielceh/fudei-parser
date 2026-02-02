@@ -6,7 +6,7 @@ import { FamilySchoolContextMapper } from "./mappers/family-school-context.mappe
 import { HealthAssessmentMapper } from "./mappers/health-assessment.mapper";
 import { MultidisciplinaryTeamMapper } from "./mappers/multidisciplinary-team.mapper";
 import { ObservationsSummaryMapper } from "./mappers/observations-summary.mapper";
-import { PsychoeducationalAssessmentMapper } from "./mappers/psycho-educational-assessment.mapper copy";
+import { PsychoeducationalAssessmentMapper } from "./mappers/psycho-educational-assessment.mapper";
 import { Summary } from "./models/summary.model";
 
 

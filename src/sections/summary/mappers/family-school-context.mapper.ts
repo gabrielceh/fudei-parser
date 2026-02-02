@@ -1,13 +1,10 @@
 import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
-import { match } from "../../../helpers/match.helper";
-import { normalizePdfText } from "../../../helpers/normalize-pdf-text.helper";
 import { normalizeWhitespace } from "../../../helpers/normalize-white-space.helper";
 import { ContextFactors, FamilyAndSchoolContext } from "../models/family-and-school-context.model";
 
 
 export class FamilySchoolContextMapper {
   static map(text: string): FamilyAndSchoolContext | undefined  {  
-    const textNormalized = normalizePdfText(text);
     const chunkFamilySchoolContext = extractSectionByTitle({
       text: text,
       startTitle: "Contexto Familiar y Escolar",

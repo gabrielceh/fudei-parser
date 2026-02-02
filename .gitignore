@@ -1,9 +1,7 @@
 /node_modules
+/json
+/pdfs
 
 .env
-
 package-lock.json
 
-/json
-
-pdfs

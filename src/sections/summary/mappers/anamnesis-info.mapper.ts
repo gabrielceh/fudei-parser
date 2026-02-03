@@ -1,6 +1,6 @@
-import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
-import { normalizePdfText } from "../../../helpers/normalize-pdf-text.helper";
-import { normalizeWhitespace } from "../../../helpers/normalize-white-space.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
+import { normalizePdfText } from "@src/helpers/normalize-pdf-text.helper";
+import { normalizeWhitespace } from "@src/helpers/normalize-white-space.helper";
 import { AnamnesisInfo } from "../models/anamnesis.model";
 
 export class AnamnesisInfoMapper {

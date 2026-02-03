@@ -1,5 +1,5 @@
-import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
-import { normalizeWhitespace } from "../../../helpers/normalize-white-space.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
+import { normalizeWhitespace } from "@src/helpers/normalize-white-space.helper";
 
 export class HealthAssessmentMapper {
   static map(text: string) {   

@@ -1,4 +1,4 @@
-import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
 import { DiagnosisInfo } from "../models/diagnosis.model";
 import { extractDiagnosis } from "../utils/extratc-diagnosis.utils";
 

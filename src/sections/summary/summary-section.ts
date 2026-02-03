@@ -1,5 +1,5 @@
-import { extractSectionByTitle } from "../../helpers/extract-section-by-table.helper";
-import { normalizePdfText } from "../../helpers/normalize-pdf-text.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
+import { normalizePdfText } from "@src/helpers/normalize-pdf-text.helper";
 import { AnamnesisInfoMapper } from "./mappers/anamnesis-info.mapper";
 import { DiagnosisInfoMapper } from "./mappers/diagnosis-info.mapper";
 import { FamilySchoolContextMapper } from "./mappers/family-school-context.mapper";

@@ -1,4 +1,4 @@
-import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
 import { extractProcessResponsible } from "../utils/extract-process-responsible.utils";
 
 export class ProcessResponsibleMapper {

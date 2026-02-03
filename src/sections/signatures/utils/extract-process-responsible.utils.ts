@@ -1,4 +1,4 @@
-import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
 import { ProcessResponsible } from "../models/process-responsible.model";
 
 export const extractProcessResponsible = (text: string): ProcessResponsible => {

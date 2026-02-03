@@ -1,4 +1,4 @@
-import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
 import { extractSchoolDirector } from "../utils/extract-school-director.utils";
 
 export class SchoolDirectorMapper {

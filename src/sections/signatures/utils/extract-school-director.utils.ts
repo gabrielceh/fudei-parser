@@ -1,4 +1,4 @@
-import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
 import { SchoolDirector } from "../models/school-director.model";
 
 export const extractSchoolDirector = (text: string): SchoolDirector => {

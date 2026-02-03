@@ -1,9 +1,7 @@
-import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
-import { extractTableFields } from "../../../helpers/extract-table-fields.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
 import { MultidisciplinaryTeam, ProfessionalEvaluation } from "../models/multidisciplinary-team.model";
 import { extractEvaluationProcesses } from "../utils/extract-evaluation-process.util";
 import { extractProfessionalData } from "../utils/extract-professional-data.utils";
-import { PROFESSIONAL_FIELD_LABELS } from "../utils/professional-fileds-labels.utils";
 
 export class MultidisciplinaryTeamMapper {
   static map(text: string): MultidisciplinaryTeam | undefined {

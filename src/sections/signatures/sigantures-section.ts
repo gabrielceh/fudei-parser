@@ -1,4 +1,4 @@
-import { extractSectionByTitle } from "../../helpers/extract-section-by-table.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
 import { ProcessResponsibleMapper } from "./mappers/process-responsible.mapper";
 import { SchoolDirectorMapper } from "./mappers/school-director.mapper";
 import { SignatureOfResponsibles } from "./models/signature-of-responsibles.model";

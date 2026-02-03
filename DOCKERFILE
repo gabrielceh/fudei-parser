@@ -1,0 +1,50 @@
+# =========================
+# Dependencies (dev)
+# =========================
+FROM node:22-alpine AS deps
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+# =========================
+# Tests
+# =========================
+FROM node:22-alpine AS test
+WORKDIR /app
+
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+RUN npm run test
+
+# =========================
+# Build
+# =========================
+FROM node:22-alpine AS builder
+WORKDIR /app
+
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+RUN npm run build
+
+# =========================
+# Production deps
+# =========================
+FROM node:22-alpine AS prod-deps
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev
+
+# =========================
+# Production image
+# =========================
+FROM node:22-alpine AS prod
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+COPY --from=prod-deps /app/node_modules ./node_modules
+COPY --from=builder /app/dist ./dist
+
+CMD ["node", "dist/index.js"]

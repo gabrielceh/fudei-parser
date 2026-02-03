@@ -8,8 +8,8 @@ import { summarySection } from "./sections/summary/summary-section";
 import { neeIdentificationSection } from "./sections/nee-identification/nee-identification-section";
 import { signaturesSection } from "./sections/signatures/sigantures-section";
 
-// const file1 = { path: "C:\/Users\/gach0\/OneDrive\/Desktop\/proyectos\/scraping-pdf-fudei\/pdfs\/FU_21498364.pdf", name: "FU_21498364" };
-// const file2 = { path: "./pdfs/FU_26166005.pdf", name: "FU_26166005" };
+const file1 = { path: "C:\/Users\/gach0\/OneDrive\/Desktop\/proyectos\/scraping-pdf-fudei\/pdfs\/FU_21498364.pdf", name: "FU_21498364" };
+const file2 = { path: "./pdfs/FU_26166005.pdf", name: "FU_26166005" };
 
 
 interface FudeiScraperOptions {
@@ -72,11 +72,11 @@ export class FudeiPdfScraper {
   }
 }
 
-// (async() => {
-//   const scraper = new FudeiPdfScraper(
-//     file1.path,
-//     // "https://ontheline.trincoll.edu/images/bookdown/sample-local-pdf.pdf",
-//     {saveJson: true, fileName: file1.name, outputPath:"./json"});
-//   const fudei = await scraper.parse();
-//   console.log(fudei);
-// })();
+(async() => {
+  const scraper = new FudeiPdfScraper(
+    file1.path,
+    // "https://ontheline.trincoll.edu/images/bookdown/sample-local-pdf.pdf",
+    {saveJson: true, fileName: file1.name, outputPath:"./json"});
+  const fudei = await scraper.parse();
+  console.log(fudei);
+})();

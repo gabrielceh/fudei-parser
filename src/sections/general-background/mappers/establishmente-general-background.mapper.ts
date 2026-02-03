@@ -1,4 +1,4 @@
-import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
 import { EstablishmentIdentification,  } from "../models/general-background.interface";
 import { extractEstablishment } from "../utils/extract-establishment.utils";
 

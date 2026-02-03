@@ -1,4 +1,4 @@
-import { extractSectionByTitle } from "../../helpers/extract-section-by-table.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
 import { EstablishmenteGeneralBackgroundMapper } from "./mappers/establishmente-general-background.mapper";
 import { StudentGeneralBackgroundMapper } from "./mappers/student-general-background.mapper";
 import { GeneralBackground } from "./models/general-background.interface";

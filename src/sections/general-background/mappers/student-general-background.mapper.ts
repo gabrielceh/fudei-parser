@@ -1,8 +1,9 @@
-import { parsePdfBoolean } from "../../../helpers/parse-pdf-boolean";
+import { extractTableFields } from "@src/helpers/extract-table-fields.helper";
+import { parsePdfBoolean } from "@src/helpers/parse-pdf-boolean";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
+
 import { STUDENT_FIELD_LABELS } from "../utils/student-field-labels.util";
-import { extractTableFields } from "../../../helpers/extract-table-fields.helper";
 import { StudentIdentification } from "../models/general-background.interface";
-import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
 
 
 

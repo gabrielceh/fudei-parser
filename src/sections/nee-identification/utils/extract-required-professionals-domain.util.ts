@@ -1,6 +1,6 @@
-import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
-import { match } from "../../../helpers/match.helper";
-import { normalizeWhitespace } from "../../../helpers/normalize-white-space.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
+import { match } from "@src/helpers/match.helper";
+import { normalizeWhitespace } from "@src/helpers/normalize-white-space.helper";
 import { RequiredProfessionals } from "../models/required-professionals.model";
 
 const bool = (v?: string) => v?.toUpperCase() === "SI";

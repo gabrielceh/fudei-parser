@@ -1,4 +1,4 @@
-import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
 import { AffectiveSocialDomain } from "../models/affective-social-domain.model";
 import { extractAffectiveSocialDomain } from "../utils/extract-affective-social-domain.util";
 

@@ -1,4 +1,4 @@
-import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
 import { CommunicationDomain } from "../models/communication-domain.model";
 import { extractCommunicationDomain } from "../utils/extract-communication-domain.util";
 

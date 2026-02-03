@@ -1,5 +1,5 @@
-import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
-import { parsePdfBoolean } from "../../../helpers/parse-pdf-boolean";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
+import { parsePdfBoolean } from "@src/helpers/parse-pdf-boolean";
 
 export class LearningObjectivesAdjustmentsMapper {
   static map(text: string): boolean | undefined {

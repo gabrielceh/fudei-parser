@@ -1,4 +1,4 @@
-import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
 import { SensoryPerceptualDomain } from "../models/sensory-perceptual-domain.model";
 import { extractSensoryPerceptualDomain } from "../utils/extract-sensory-perceptual-domain.util";
 

@@ -1,4 +1,4 @@
-import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
 import { RequiredProfessionals } from "../models/required-professionals.model";
 import { extractRequiredProfessionalsDomain } from "../utils/extract-required-professionals-domain.util";
 

@@ -1,4 +1,4 @@
-import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
 import { CognitiveDomain } from "../models/cognitive-domain.model";
 import { extractCognitiveDomain } from "../utils/extract-cognitive-domain.util";
 

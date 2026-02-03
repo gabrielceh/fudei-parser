@@ -1,5 +1,5 @@
-import { extractSectionByTitle } from "../../helpers/extract-section-by-table.helper";
-import { normalizePdfText } from "../../helpers/normalize-pdf-text.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
+import { normalizePdfText } from "@src/helpers/normalize-pdf-text.helper";
 import { AffectiveSocialDomainMapper } from "./mappers/affective-social-domain.mapper";
 import { CognitiveDomainMapper } from "./mappers/cognitive-domain.mapper";
 import { CommunicationDomainMapper } from "./mappers/communication-domain.mapper";

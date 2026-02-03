@@ -1,4 +1,4 @@
-import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
 import { EmotionalDomain } from "../models/emotional-domain.model";
 import { extractEmotionalDomain } from "../utils/extract-emotional-domain.util";
 

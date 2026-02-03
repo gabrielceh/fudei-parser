@@ -1,4 +1,4 @@
-import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
 import { LanguageDomain } from "../models/language-domain.model";
 import { extractLanguageDomain } from "../utils/extract-language-domain.util";
 

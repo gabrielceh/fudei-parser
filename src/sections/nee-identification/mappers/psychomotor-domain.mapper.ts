@@ -1,4 +1,4 @@
-import { extractSectionByTitle } from "../../../helpers/extract-section-by-table.helper";
+import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
 import { PsychomotorDomain } from "../models/psychomotor-domain.model";
 import { extractPsychomotorDomain } from "../utils/extract-psychomotor-domain.util";
 

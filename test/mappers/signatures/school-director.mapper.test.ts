@@ -1,7 +1,7 @@
-import { SchoolDirectorMapper } from "../../../src/sections/signatures/mappers/school-director.mapper";
+import { SchoolDirectorMapper } from '../../../src/sections/signatures/mappers/school-director.mapper';
 
-describe("ProcessResponsibleMapper", () => {
-  it("should extract and normalize school director text", () => {
+describe('ProcessResponsibleMapper', () => {
+  it('should extract and normalize school director text', () => {
     const text = `
       Director del Establecimiento
       Nombre y Apellidos: John Doe
@@ -12,13 +12,13 @@ describe("ProcessResponsibleMapper", () => {
     const result = SchoolDirectorMapper.map(text);
 
     expect(result).toEqual({
-      fullName: "John Doe",
-      phone: "1234567890",
-      email: "john@doe.com",
+      fullName: 'John Doe',
+      phone: '1234567890',
+      email: 'john@doe.com',
     });
   });
 
-  it("should return undefined if school director section is not found", () => {
+  it('should return undefined if school director section is not found', () => {
     const text = `
       Texto sin la sección esperada
     `;
@@ -28,7 +28,7 @@ describe("ProcessResponsibleMapper", () => {
     expect(result).toBeUndefined();
   });
 
-  it("should return empty strings when some fields are missing", () => {
+  it('should return empty strings when some fields are missing', () => {
     const text = `
       Director del Establecimiento
       Nombre y Apellidos: John Doe
@@ -37,10 +37,9 @@ describe("ProcessResponsibleMapper", () => {
     const result = SchoolDirectorMapper.map(text);
 
     expect(result).toEqual({
-      fullName: "John Doe",
-      phone: "",
-      email: "",
+      fullName: 'John Doe',
+      phone: '',
+      email: '',
     });
   });
-
 });

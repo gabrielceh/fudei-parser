@@ -1,4 +1,4 @@
-import { LabelPattern } from "../types/label-pattern.interface";
+import { LabelPattern } from '../types/label-pattern.interface';
 /**
  * Extracts key–value fields from a PDF table-like text section using label patterns.
  *
@@ -29,9 +29,9 @@ import { LabelPattern } from "../types/label-pattern.interface";
  *
  * @returns A partial record mapping model keys to extracted raw string values.
  */
-export const extractTableFields = <TModel> (
+export const extractTableFields = <TModel>(
   text: string,
-  labels: readonly LabelPattern<TModel>[]
+  labels: readonly LabelPattern<TModel>[],
 ): Partial<Record<keyof TModel, string>> => {
   const result: Partial<Record<keyof TModel, string>> = {};
 
@@ -40,12 +40,12 @@ export const extractTableFields = <TModel> (
     const normalizedText = normalizeLabels(text);
     // const next = labels[i + 1]; // label siguiente
 
-     // 1️⃣ Buscar el siguiente label que REALMENTE exista en el texto
+    // 1️⃣ Buscar el siguiente label que REALMENTE exista en el texto
     let next: string | null = null;
 
     for (let j = i + 1; j < labels.length; j++) {
       const candidate = labels[j];
-      const candidateRegex = new RegExp(`${candidate.pattern}:`, "i");
+      const candidateRegex = new RegExp(`${candidate.pattern}:`, 'i');
 
       if (candidateRegex.test(normalizedText)) {
         next = candidate.pattern;
@@ -54,23 +54,20 @@ export const extractTableFields = <TModel> (
     }
 
     const pattern = next
-      ? `${current.pattern}:([\\s\\S]*?)(?=${next}:)`// capura el valor del label hasta el siguiente incluidos saltos de linea
+      ? `${current.pattern}:([\\s\\S]*?)(?=${next}:)` // capura el valor del label hasta el siguiente incluidos saltos de linea
       : `${current.pattern}:([\\s\\S]*)`; // captura todo el texto porque no hay mas label
 
-    const regex = new RegExp(pattern, "i");
+    const regex = new RegExp(pattern, 'i');
     const match = normalizeLabels(text).match(regex);
 
     // Extraemos el valor capturado
-    const rawValue = match?.[1]
-      ?.replace(/\s+/g, " ")
-      .trim();
+    const rawValue = match?.[1]?.replace(/\s+/g, ' ').trim();
 
     result[current.key] = rawValue || undefined; // guardamos la key
   }
 
   return result;
 };
-
 
 /**
  * Normalizes raw PDF text to improve regex-based label matching.
@@ -87,10 +84,9 @@ export const extractTableFields = <TModel> (
  * @returns Normalized text suitable for regex matching.
  */
 const normalizeLabels = (text: string): string => {
- return text
-    .replace(/\r/g, "")
-    .replace(/([a-zA-ZáéíóúÁÉÍÓÚ])\n([a-zA-ZáéíóúÁÉÍÓÚ])/g, "$1 $2")
-    .replace(/\s+/g, " ")
+  return text
+    .replace(/\r/g, '')
+    .replace(/([a-zA-ZáéíóúÁÉÍÓÚ])\n([a-zA-ZáéíóúÁÉÍÓÚ])/g, '$1 $2')
+    .replace(/\s+/g, ' ')
     .trim();
 };
-

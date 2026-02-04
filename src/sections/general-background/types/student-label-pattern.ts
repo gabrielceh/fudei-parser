@@ -1,5 +1,4 @@
-import { StudentIdentification } from "../models/general-background.interface";
-
+import { StudentIdentification } from '../models/general-background.interface';
 
 export type StudentKey = keyof StudentIdentification;
 

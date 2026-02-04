@@ -1,7 +1,7 @@
-import { EstablishmenteGeneralBackgroundMapper } from "../../../src/sections/general-background/mappers/establishmente-general-background.mapper";
+import { EstablishmenteGeneralBackgroundMapper } from '../../../src/sections/general-background/mappers/establishmente-general-background.mapper';
 
-describe("EstablishmenteGeneralBackgroundMapper", () => {
-  it("should map establishment general background correctly", () => {
+describe('EstablishmenteGeneralBackgroundMapper', () => {
+  it('should map establishment general background correctly', () => {
     const text = `
       I. ANTECEDENTES GENERALES
 
@@ -17,16 +17,16 @@ describe("EstablishmenteGeneralBackgroundMapper", () => {
     const result = EstablishmenteGeneralBackgroundMapper.map(text);
 
     expect(result).toEqual({
-      name: "Colegio San Martín",
-      dependencyType: "Municipal",
-      rbd: "12345",
-      address: "Av. Siempre Viva 742",
-      region: "Metropolitana",
-      commune: "Santiago",
+      name: 'Colegio San Martín',
+      dependencyType: 'Municipal',
+      rbd: '12345',
+      address: 'Av. Siempre Viva 742',
+      region: 'Metropolitana',
+      commune: 'Santiago',
     });
   });
 
-  it("should return undefined if establishment section is not found", () => {
+  it('should return undefined if establishment section is not found', () => {
     const text = `
       I. ANTECEDENTES GENERALES
       Texto cualquiera sin datos del establecimiento
@@ -37,7 +37,7 @@ describe("EstablishmenteGeneralBackgroundMapper", () => {
     expect(result).toBeUndefined();
   });
 
-  it("should return empty strings when some fields are missing", () => {
+  it('should return empty strings when some fields are missing', () => {
     const text = `
       Antecedentes de Identificación del Establecimiento
       Nombre del Establecimiento: Colegio Incompleto
@@ -48,13 +48,12 @@ describe("EstablishmenteGeneralBackgroundMapper", () => {
     const result = EstablishmenteGeneralBackgroundMapper.map(text);
 
     expect(result).toEqual({
-      name: "Colegio Incompleto",
-      dependencyType: "Municipal",
-      rbd: "99999",
-      address: "",
-      region: "",
-      commune: "",
+      name: 'Colegio Incompleto',
+      dependencyType: 'Municipal',
+      rbd: '99999',
+      address: '',
+      region: '',
+      commune: '',
     });
   });
 });
-

@@ -1,26 +1,25 @@
-import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
-import { normalizePdfText } from "@src/helpers/normalize-pdf-text.helper";
-import { AnamnesisInfoMapper } from "./mappers/anamnesis-info.mapper";
-import { DiagnosisInfoMapper } from "./mappers/diagnosis-info.mapper";
-import { FamilySchoolContextMapper } from "./mappers/family-school-context.mapper";
-import { HealthAssessmentMapper } from "./mappers/health-assessment.mapper";
-import { MultidisciplinaryTeamMapper } from "./mappers/multidisciplinary-team.mapper";
-import { ObservationsSummaryMapper } from "./mappers/observations-summary.mapper";
-import { PsychoeducationalAssessmentMapper } from "./mappers/psycho-educational-assessment.mapper";
-import { Summary } from "./models/summary.model";
+import { extractSectionByTitle } from '@src/helpers/extract-section-by-table.helper';
+import { normalizePdfText } from '@src/helpers/normalize-pdf-text.helper';
+import { AnamnesisInfoMapper } from './mappers/anamnesis-info.mapper';
+import { DiagnosisInfoMapper } from './mappers/diagnosis-info.mapper';
+import { FamilySchoolContextMapper } from './mappers/family-school-context.mapper';
+import { HealthAssessmentMapper } from './mappers/health-assessment.mapper';
+import { MultidisciplinaryTeamMapper } from './mappers/multidisciplinary-team.mapper';
+import { ObservationsSummaryMapper } from './mappers/observations-summary.mapper';
+import { PsychoeducationalAssessmentMapper } from './mappers/psycho-educational-assessment.mapper';
+import { Summary } from './models/summary.model';
 
-
-export const summarySection = (text:string):Summary | undefined => {
+export const summarySection = (text: string): Summary | undefined => {
   const textNormalized = normalizePdfText(text);
 
   const sumamrySectionText = extractSectionByTitle({
     text: textNormalized,
-    startTitle: "II RESUMEN DEL PROCESO DE EVALUACION INTEGRAL E INTERDISCIPLINARIA",
-    endTitle: "III IDENTIFICACIÓN DE NEE",
-  })
+    startTitle: 'II RESUMEN DEL PROCESO DE EVALUACION INTEGRAL E INTERDISCIPLINARIA',
+    endTitle: 'III IDENTIFICACIÓN DE NEE',
+  });
 
-  if(!sumamrySectionText) return undefined;
-  
+  if (!sumamrySectionText) return undefined;
+
   const diagnosis = DiagnosisInfoMapper.map(sumamrySectionText);
   const multidisciplinaryTeam = MultidisciplinaryTeamMapper.map(sumamrySectionText);
   const anamnesis = AnamnesisInfoMapper.map(sumamrySectionText);
@@ -29,15 +28,13 @@ export const summarySection = (text:string):Summary | undefined => {
   const familyAndSchoolContext = FamilySchoolContextMapper.map(sumamrySectionText);
   const observations = ObservationsSummaryMapper.map(sumamrySectionText);
 
-  return({
-    diagnosis, 
+  return {
+    diagnosis,
     multidisciplinaryTeam,
     anamnesis,
     healthAssessment,
     psychoeducationalAssessment,
     familyAndSchoolContext,
     observations,
-  });
-  
-
-}
+  };
+};

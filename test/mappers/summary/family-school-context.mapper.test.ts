@@ -1,7 +1,7 @@
-import { FamilySchoolContextMapper } from "../../../src/sections/summary/mappers/family-school-context.mapper";
+import { FamilySchoolContextMapper } from '../../../src/sections/summary/mappers/family-school-context.mapper';
 
-describe("FamilySchoolContextMapper", () => {
-  it("should map family and school context correctly", () => {
+describe('FamilySchoolContextMapper', () => {
+  it('should map family and school context correctly', () => {
     const text = `
       Contexto Familiar y Escolar
 
@@ -29,17 +29,17 @@ describe("FamilySchoolContextMapper", () => {
 
     expect(result).toEqual({
       family: {
-        strengths: "Apoyo constante de la familia y seguimiento de tareas.",
-        difficulties: "Falta de rutinas claras.",
+        strengths: 'Apoyo constante de la familia y seguimiento de tareas.',
+        difficulties: 'Falta de rutinas claras.',
       },
       school: {
-        strengths: "Buen clima escolar y apoyo del docente.",
-        difficulties: "Cursos con alta cantidad de estudiantes.",
+        strengths: 'Buen clima escolar y apoyo del docente.',
+        difficulties: 'Cursos con alta cantidad de estudiantes.',
       },
     });
   });
 
-  it("should return undefined if main section is not found", () => {
+  it('should return undefined if main section is not found', () => {
     const text = `
       Texto sin la sección esperada
     `;
@@ -49,7 +49,7 @@ describe("FamilySchoolContextMapper", () => {
     expect(result).toBeUndefined();
   });
 
-  it("should normalize empty context sections", () => {
+  it('should normalize empty context sections', () => {
     const text = `
       Contexto Familiar y Escolar
 
@@ -68,15 +68,13 @@ describe("FamilySchoolContextMapper", () => {
 
     expect(result).toEqual({
       family: {
-        strengths: "",
-        difficulties: "",
+        strengths: '',
+        difficulties: '',
       },
       school: {
-        strengths: "",
-        difficulties: "",
+        strengths: '',
+        difficulties: '',
       },
     });
   });
 });
-
-

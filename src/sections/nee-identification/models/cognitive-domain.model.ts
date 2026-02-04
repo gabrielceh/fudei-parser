@@ -1,4 +1,4 @@
-import { WithOther } from "../types/with-other.interface";
+import { WithOther } from '../types/with-other.interface';
 
 export interface CognitiveDomain {
   attention: CognitiveAttention;
@@ -10,7 +10,6 @@ export interface CognitiveAttention {
   sustained: boolean;
   selective: boolean;
   processingSpeed: boolean;
-
 }
 
 export interface CognitiveMemory {

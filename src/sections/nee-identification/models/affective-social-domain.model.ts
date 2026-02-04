@@ -1,5 +1,4 @@
-import { WithOther } from "../types/with-other.interface";
-
+import { WithOther } from '../types/with-other.interface';
 
 export interface AffectiveSocialDomain extends WithOther {
   selfEsteemSecurity: boolean;

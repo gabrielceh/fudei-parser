@@ -33,5 +33,3 @@ export interface EstablishmentIdentification {
   region: string;
   commune: string;
 }
-
-

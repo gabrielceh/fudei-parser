@@ -1,25 +1,25 @@
-import { LanguageDomainMapper } from "../../../src/sections/nee-identification/mappers/language-domain.mapper";
+import { LanguageDomainMapper } from '../../../src/sections/nee-identification/mappers/language-domain.mapper';
 
-describe("LanguageDomainMapper", () => {
-    it("should map language domain correctly", () => {
-        const text = `
+describe('LanguageDomainMapper', () => {
+  it('should map language domain correctly', () => {
+    const text = `
       Ámbito Lenguaje
       some content
       Ámbito Comunicación
     `;
 
-        const result = LanguageDomainMapper.map(text);
+    const result = LanguageDomainMapper.map(text);
 
-        expect(result).toBeDefined();
-    });
+    expect(result).toBeDefined();
+  });
 
-    it("should return undefined if section is not found", () => {
-        const text = `
+  it('should return undefined if section is not found', () => {
+    const text = `
       Other content
     `;
 
-        const result = LanguageDomainMapper.map(text);
+    const result = LanguageDomainMapper.map(text);
 
-        expect(result).toBeUndefined();
-    });
+    expect(result).toBeUndefined();
+  });
 });

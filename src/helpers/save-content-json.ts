@@ -1,5 +1,5 @@
-import * as fs from "fs";
-import path from "path";
+import * as fs from 'fs';
+import path from 'path';
 
 interface SaveContentOptions {
   data: unknown;
@@ -7,8 +7,12 @@ interface SaveContentOptions {
   outputPath: string;
 }
 
-export async function saveContentInJson({data, fileName, outputPath}:SaveContentOptions): Promise<void> {
- const folderPath = path.resolve(outputPath); // carpeta donde quieres guardar
+export async function saveContentInJson({
+  data,
+  fileName,
+  outputPath,
+}: SaveContentOptions): Promise<void> {
+  const folderPath = path.resolve(outputPath); // carpeta donde quieres guardar
   const filePath = path.join(folderPath, `${fileName}.json`);
 
   // Crear carpeta si no existe
@@ -17,6 +21,6 @@ export async function saveContentInJson({data, fileName, outputPath}:SaveContent
   }
 
   // Guardar archivo
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf-8");
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
   console.log(`✔ Contenido guardado en "${filePath}"`);
 }

@@ -1,25 +1,25 @@
-import { CommunicationDomainMapper } from "../../../src/sections/nee-identification/mappers/communication-domain.mapper";
+import { CommunicationDomainMapper } from '../../../src/sections/nee-identification/mappers/communication-domain.mapper';
 
-describe("CommunicationDomainMapper", () => {
-    it("should map communication domain correctly", () => {
-        const text = `
+describe('CommunicationDomainMapper', () => {
+  it('should map communication domain correctly', () => {
+    const text = `
       Ámbito Comunicación
       some content
       Ámbito Sensoperceptivo
     `;
 
-        const result = CommunicationDomainMapper.map(text);
+    const result = CommunicationDomainMapper.map(text);
 
-        expect(result).toBeDefined();
-    });
+    expect(result).toBeDefined();
+  });
 
-    it("should return undefined if section is not found", () => {
-        const text = `
+  it('should return undefined if section is not found', () => {
+    const text = `
       Other content
     `;
 
-        const result = CommunicationDomainMapper.map(text);
+    const result = CommunicationDomainMapper.map(text);
 
-        expect(result).toBeUndefined();
-    });
+    expect(result).toBeUndefined();
+  });
 });

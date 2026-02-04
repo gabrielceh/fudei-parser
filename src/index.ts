@@ -1,16 +1,15 @@
-import { removeHeaderFooter } from "./helpers/remove-footer-pdf.herlper";
-import { saveContentInJson } from "./helpers/save-content-json";
-import { ParsedPdf } from "./pdf/parse-pdf";
-import { readPdfFromFile } from "./pdf/read-from-file";
-import { readPdfFromUrl } from "./pdf/read-from-url";
-import { generalBackgroundSection } from "./sections/general-background/general-background-section";
-import { summarySection } from "./sections/summary/summary-section";
-import { neeIdentificationSection } from "./sections/nee-identification/nee-identification-section";
-import { signaturesSection } from "./sections/signatures/sigantures-section";
+import { removeHeaderFooter } from './helpers/remove-footer-pdf.herlper';
+import { saveContentInJson } from './helpers/save-content-json';
+import { ParsedPdf } from './pdf/parse-pdf';
+import { readPdfFromFile } from './pdf/read-from-file';
+import { readPdfFromUrl } from './pdf/read-from-url';
+import { generalBackgroundSection } from './sections/general-background/general-background-section';
+import { summarySection } from './sections/summary/summary-section';
+import { neeIdentificationSection } from './sections/nee-identification/nee-identification-section';
+import { signaturesSection } from './sections/signatures/sigantures-section';
 
 // const file1 = { path: "C:\/Users\/gach0\/OneDrive\/Desktop\/proyectos\/scraping-pdf-fudei\/pdfs\/FU_21498364.pdf", name: "FU_21498364" };
 // const file2 = { path: "./pdfs/FU_26166005.pdf", name: "FU_26166005" };
-
 
 interface FudeiScraperOptions {
   saveJson?: boolean;
@@ -32,16 +31,14 @@ export class FudeiPdfScraper {
   }
 
   private async readPdf(): Promise<ParsedPdf> {
-    return this.isUrl()
-      ? readPdfFromUrl(this.source)
-      : readPdfFromFile(this.source);
+    return this.isUrl() ? readPdfFromUrl(this.source) : readPdfFromFile(this.source);
   }
 
   private getFileName(): string {
     if (this.options.fileName) return this.options.fileName;
     // fallback automático
-    const parts = this.source.split("/");
-    return parts[parts.length - 1].replace(".pdf", "");
+    const parts = this.source.split('/');
+    return parts[parts.length - 1].replace('.pdf', '');
   }
 
   async parse() {
@@ -58,7 +55,7 @@ export class FudeiPdfScraper {
 
     if (this.options.saveJson) {
       if (!this.options.outputPath) {
-        throw new Error("outputPath is required when saveJson is enabled");
+        throw new Error('outputPath is required when saveJson is enabled');
       }
 
       await saveContentInJson({

@@ -3,7 +3,6 @@ export interface MultidisciplinaryTeam {
   otherProfessionals?: ProfessionalEvaluation[];
 }
 
-
 export interface ProfessionalEvaluation {
   professional?: ProfessionalInfo;
   processes?: EvaluationProcesses;
@@ -20,7 +19,6 @@ export interface ProfessionalInfo {
   evaluationDate?: string;
 }
 
-
 export interface EvaluationProcesses {
   anamnesis?: boolean;
   interview: boolean;
@@ -36,4 +34,3 @@ export interface EvaluationProcesses {
   other: boolean;
   otherDetails?: string;
 }
-

@@ -34,41 +34,42 @@ Importa `FudeiPdfScraper` en tu proyecto para iniciar el proceso de scraping.
 ### Ejemplo Básico
 
 ```typescript
-import { FudeiPdfScraper } from "pdf-pdf-fudei";
+import { FudeiPdfScraper } from 'pdf-pdf-fudei';
 
 (async () => {
   // Configuración de opciones
   const options = {
-    saveJson: true,          // Opcional: Guardar el resultado en JSON
-    fileName: "mi_analisis", // Opcional: Nombre del archivo de salida
-    outputPath: "./output"   // Requerido si saveJson es true
+    saveJson: true, // Opcional: Guardar el resultado en JSON
+    fileName: 'mi_analisis', // Opcional: Nombre del archivo de salida
+    outputPath: './output', // Requerido si saveJson es true
   };
 
   // Inicializar el scraper con la ruta del archivo o URL
-  const scraper = new FudeiPdfScraper("./pdfs/mi_documento.pdf", options);
+  const scraper = new FudeiPdfScraper('./pdfs/mi_documento.pdf', options);
 
   try {
     const data = await scraper.parse();
-    console.log("Datos extraídos:", data);
+    console.log('Datos extraídos:', data);
   } catch (error) {
-    console.error("Error al procesar el PDF:", error);
+    console.error('Error al procesar el PDF:', error);
   }
 })();
 ```
 
 ### Opciones de Configuración (`FudeiScraperOptions`)
 
-| Opción       | Tipo      | Descripción |
-|--------------|-----------|-------------|
-| `saveJson`   | `boolean` | Si es `true`, guarda el resultado en un archivo JSON. |
+| Opción       | Tipo      | Descripción                                                                                   |
+| ------------ | --------- | --------------------------------------------------------------------------------------------- |
+| `saveJson`   | `boolean` | Si es `true`, guarda el resultado en un archivo JSON.                                         |
 | `fileName`   | `string`  | Nombre del archivo JSON a generar (sin extensión). Si no se provee, se usa el nombre del PDF. |
-| `outputPath` | `string`  | Ruta del directorio donde se guardará el archivo JSON. Requerido si `saveJson` es `true`. |
+| `outputPath` | `string`  | Ruta del directorio donde se guardará el archivo JSON. Requerido si `saveJson` es `true`.     |
 
 ## 🛠️ Desarrollo
 
 Si deseas clonar el repositorio para contribuir o modificar el código fuente:
 
 1. **Clonar el repositorio:**
+
    ```bash
    git clone <URL_DEL_REPOSITORIO>
    cd scraping-pdf-fudei

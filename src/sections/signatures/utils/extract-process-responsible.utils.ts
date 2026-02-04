@@ -1,44 +1,49 @@
-import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
-import { ProcessResponsible } from "../models/process-responsible.model";
+import { extractSectionByTitle } from '@src/helpers/extract-section-by-table.helper';
+import { ProcessResponsible } from '../models/process-responsible.model';
 
 export const extractProcessResponsible = (text: string): ProcessResponsible => {
   const result: ProcessResponsible = {
-    fullName: "",
-    profession: "",
-    position: "",
-    phone: "",
-    email: "",
+    fullName: '',
+    profession: '',
+    position: '',
+    phone: '',
+    email: '',
   };
 
   // 🔹 Nombre y Apellidos
-  result.fullName = extractSectionByTitle({
-    text: text,
-    startTitle: "Nombre y Apellidos:",
-    endTitle: "Profesión:",
-  }) ?? '';
+  result.fullName =
+    extractSectionByTitle({
+      text: text,
+      startTitle: 'Nombre y Apellidos:',
+      endTitle: 'Profesión:',
+    }) ?? '';
   // 🔹 Profesión
-  result.profession = extractSectionByTitle({
-    text: text,
-    startTitle: "Profesión:",
-    endTitle: "Cargo:",
-  }) ?? '';
+  result.profession =
+    extractSectionByTitle({
+      text: text,
+      startTitle: 'Profesión:',
+      endTitle: 'Cargo:',
+    }) ?? '';
   // 🔹 Posición
-  result.position = extractSectionByTitle({
-    text: text,
-    startTitle: "Cargo:",
-    endTitle: "Teléfono:",
-  }) ?? '';
+  result.position =
+    extractSectionByTitle({
+      text: text,
+      startTitle: 'Cargo:',
+      endTitle: 'Teléfono:',
+    }) ?? '';
   // 🔹 Teléfono
-  result.phone = extractSectionByTitle({
-    text: text,
-    startTitle: "Teléfono:",
-    endTitle: "Correo electrónico:",
-  }) ?? '';
+  result.phone =
+    extractSectionByTitle({
+      text: text,
+      startTitle: 'Teléfono:',
+      endTitle: 'Correo electrónico:',
+    }) ?? '';
   // 🔹 Correo Electrónico
-  result.email = extractSectionByTitle({
-    text: text,
-    startTitle: "Correo electrónico:",
-  }) ?? '';
-  
+  result.email =
+    extractSectionByTitle({
+      text: text,
+      startTitle: 'Correo electrónico:',
+    }) ?? '';
+
   return result;
 };

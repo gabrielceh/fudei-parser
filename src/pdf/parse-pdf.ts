@@ -1,4 +1,4 @@
-import pdf from "pdf-parse";
+import pdf from 'pdf-parse';
 
 export interface ParsedPdf {
   text: string;

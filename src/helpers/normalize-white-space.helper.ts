@@ -8,7 +8,7 @@
  * @returns {string} Texto con los espacios normalizados.
  */
 export const normalizeWhitespace = (text: string): string => {
-  if(!text) return "";
+  if (!text) return '';
 
-  return text.replace(/\s+/g, " ").trim();
+  return text.replace(/\s+/g, ' ').trim();
 };

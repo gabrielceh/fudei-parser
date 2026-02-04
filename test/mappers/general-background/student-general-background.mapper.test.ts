@@ -1,7 +1,7 @@
-import { StudentGeneralBackgroundMapper } from "../../../src/sections/general-background/mappers/student-general-background.mapper";
+import { StudentGeneralBackgroundMapper } from '../../../src/sections/general-background/mappers/student-general-background.mapper';
 
-describe("StudentGeneralBackgroundMapper", () => {
-  it("should map student general background correctly", () => {
+describe('StudentGeneralBackgroundMapper', () => {
+  it('should map student general background correctly', () => {
     const text = `
       I. ANTECEDENTES GENERALES
 
@@ -33,17 +33,17 @@ describe("StudentGeneralBackgroundMapper", () => {
     const result = StudentGeneralBackgroundMapper.map(text);
 
     expect(result).toEqual({
-      fullName: "Juan Pérez",
-      nationality: "Chilena",
-      dni: "12.345.678-9",
-      address: "Calle Falsa 123",
-      gender: "Masculino",
-      region: "Metropolitana",
-      birthDate: "01-01-2010",
-      commune: "Santiago",
-      age: "14",
-      admissionCourse: "5° Básico",
-      currentCourse: "8° Básico",
+      fullName: 'Juan Pérez',
+      nationality: 'Chilena',
+      dni: '12.345.678-9',
+      address: 'Calle Falsa 123',
+      gender: 'Masculino',
+      region: 'Metropolitana',
+      birthDate: '01-01-2010',
+      commune: 'Santiago',
+      age: '14',
+      admissionCourse: '5° Básico',
+      currentCourse: '8° Básico',
 
       isPriorityStudent: true,
       isPreferredStudent: false,
@@ -51,11 +51,11 @@ describe("StudentGeneralBackgroundMapper", () => {
       hasPreviousSpecialSchoolParticipation: false,
       hasPreviousPIEParticipation: true,
       previousPIEYears: 2,
-      isSpanishNativeLanguage: true
+      isSpanishNativeLanguage: true,
     });
   });
 
-  it("should return undefined if student section is not found", () => {
+  it('should return undefined if student section is not found', () => {
     const text = `
       I. ANTECEDENTES GENERALES
       Texto cualquiera sin la sección esperada
@@ -66,17 +66,16 @@ describe("StudentGeneralBackgroundMapper", () => {
     expect(result).toBeUndefined();
   });
 
-  it("should set previousPIEYears as undefined if value is missing", () => {
-  const text = `
+  it('should set previousPIEYears as undefined if value is missing', () => {
+    const text = `
     Antecedentes de Identificación del Estudiante
     Nombre: Juan Pérez
     Participación Anterior en PIE: NO
     Antecedentes de Identificación del Establecimiento
   `;
 
-  const result = StudentGeneralBackgroundMapper.map(text);
+    const result = StudentGeneralBackgroundMapper.map(text);
 
-  expect(result?.previousPIEYears).toBeUndefined();
-});
-
+    expect(result?.previousPIEYears).toBeUndefined();
+  });
 });

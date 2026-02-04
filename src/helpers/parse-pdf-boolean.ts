@@ -22,12 +22,12 @@
  */
 export const parsePdfBoolean = (value?: string): boolean => {
   try {
-    if(value === undefined) return false;
+    if (value === undefined) return false;
     if (!value) return false;
 
     const normalized = value
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
       .toUpperCase();
 
     return /\bSI\b/.test(normalized);

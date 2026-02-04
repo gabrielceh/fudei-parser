@@ -1,45 +1,32 @@
-import { match } from "@src/helpers/match.helper";
-import { normalizeWhitespace } from "@src/helpers/normalize-white-space.helper";
-import { SensoryPerceptualDomain } from "../models/sensory-perceptual-domain.model";
+import { match } from '@src/helpers/match.helper';
+import { normalizeWhitespace } from '@src/helpers/normalize-white-space.helper';
+import { SensoryPerceptualDomain } from '../models/sensory-perceptual-domain.model';
 
-const bool = (v?: string) => v?.toUpperCase() === "SI";
+const bool = (v?: string) => v?.toUpperCase() === 'SI';
 
-export const extractSensoryPerceptualDomain = (
-  text: string
-): SensoryPerceptualDomain => {
+export const extractSensoryPerceptualDomain = (text: string): SensoryPerceptualDomain => {
   const result: SensoryPerceptualDomain = {
     visual: false,
     haptic: false,
     auditory: false,
     olfactoryGustatory: false,
     tactile: false,
-    other: "",
+    other: '',
   };
 
   // 🔹 Percepción visual
-  result.visual = bool(
-    match(/Percepción visual:\s*(SI|NO)/i, text)
-  );
+  result.visual = bool(match(/Percepción visual:\s*(SI|NO)/i, text));
   // 🔹 Percepción háptica
-  result.haptic = bool(
-    match(/Percepción háptica:\s*(SI|NO)/i, text)
-  );
+  result.haptic = bool(match(/Percepción háptica:\s*(SI|NO)/i, text));
   // 🔹 Percepción auditiva
-  result.auditory = bool(
-    match(/Percepción auditiva:\s*(SI|NO)/i, text)
-  );
+  result.auditory = bool(match(/Percepción auditiva:\s*(SI|NO)/i, text));
   // 🔹 Percepción olfativa-gustativa
-  result.olfactoryGustatory = bool(
-    match(/Percepción olfativa-gustativa:\s*(SI|NO)/i, text)
-  );
+  result.olfactoryGustatory = bool(match(/Percepción olfativa-gustativa:\s*(SI|NO)/i, text));
   // 🔹 Percepción táctil
-  result.tactile = bool(
-    match(/Percepción táctil:\s*(SI|NO)/i, text)
-  );
+  result.tactile = bool(match(/Percepción táctil:\s*(SI|NO)/i, text));
 
   // 🔹 Otro
-  result.other = normalizeWhitespace(match(/Otro:\s*([\s\S]*)/i, text) || "");
-
+  result.other = normalizeWhitespace(match(/Otro:\s*([\s\S]*)/i, text) || '');
 
   return result;
 };

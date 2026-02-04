@@ -1,7 +1,7 @@
-import { extractSectionByTitle } from "../../src/helpers/extract-section-by-table.helper";
+import { extractSectionByTitle } from '../../src/helpers/extract-section-by-table.helper';
 
 describe('extractSectionByTitle', () => {
-   it('should extract the text between startTitle and endTitle', () => {
+  it('should extract the text between startTitle and endTitle', () => {
     const text = `
 SECCIÓN I
 Contenido de la sección uno
@@ -19,7 +19,7 @@ Contenido de la sección dos
 
     expect(result).toBe(
       `Contenido de la sección uno
-línea dos`
+línea dos`,
     );
   });
 
@@ -42,7 +42,7 @@ línea tres
     expect(result).toBe(
       `línea uno
 línea dos
-línea tres`
+línea tres`,
     );
   });
 
@@ -61,7 +61,6 @@ contenido
     expect(result).toBeUndefined();
   });
 
-
   it('should ignore spaces in startTitle and endTitle', () => {
     const text = `
 TITULO INICIO
@@ -77,7 +76,4 @@ TITULO FIN
 
     expect(result).toBe('contenido importante');
   });
-
-
-
 });

@@ -1,4 +1,4 @@
-import { WithOther } from "../types/with-other.interface";
+import { WithOther } from '../types/with-other.interface';
 
 export interface LanguageDomain extends WithOther {
   phonological: LanguageLevel;
@@ -12,4 +12,3 @@ export interface LanguageLevel {
   written: boolean;
   signLanguage: boolean;
 }
-

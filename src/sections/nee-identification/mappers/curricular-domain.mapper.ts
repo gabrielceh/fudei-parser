@@ -1,20 +1,20 @@
-import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
-import { normalizeWhitespace } from "@src/helpers/normalize-white-space.helper";
+import { extractSectionByTitle } from '@src/helpers/extract-section-by-table.helper';
+import { normalizeWhitespace } from '@src/helpers/normalize-white-space.helper';
 
 export class CurricularDomainMapper {
   static map(text: string): string | undefined {
     const chunkCurricularDomainText = extractSectionByTitle({
       text: text,
-      startTitle: "Ámbito Curricular",
-      endTitle: "Ámbito Familiar",
-    })
+      startTitle: 'Ámbito Curricular',
+      endTitle: 'Ámbito Familiar',
+    });
 
-    if(!chunkCurricularDomainText) return undefined;
+    if (!chunkCurricularDomainText) return undefined;
 
     const response = extractSectionByTitle({
       text: chunkCurricularDomainText,
-      startTitle: "Indique en qué asignaturas el\/la estudiante requiere apoyo:",
-    })
+      startTitle: 'Indique en qué asignaturas el\/la estudiante requiere apoyo:',
+    });
 
     return response ? normalizeWhitespace(response) : undefined;
   }

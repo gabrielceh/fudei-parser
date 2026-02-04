@@ -1,7 +1,7 @@
-import { AnamnesisInfoMapper } from "../../../src/sections/summary/mappers/anamnesis-info.mapper";
+import { AnamnesisInfoMapper } from '../../../src/sections/summary/mappers/anamnesis-info.mapper';
 
-describe("AnamnesisInfoMapper", () => {
-  it("should map anamnesis information correctly", () => {
+describe('AnamnesisInfoMapper', () => {
+  it('should map anamnesis information correctly', () => {
     const text = `
       I. ANTECEDENTES GENERALES
 
@@ -23,13 +23,13 @@ describe("AnamnesisInfoMapper", () => {
 
     expect(result).toEqual({
       relevantBackground:
-        "El estudiante presenta dificultades en la atención sostenida y memoria de trabajo.",
+        'El estudiante presenta dificultades en la atención sostenida y memoria de trabajo.',
       spanishLanguageLevel:
-        "Nivel intermedio con buena comprensión oral pero dificultades en la expresión escrita.",
+        'Nivel intermedio con buena comprensión oral pero dificultades en la expresión escrita.',
     });
   });
 
-  it("should return undefined if anamnesis section is not found", () => {
+  it('should return undefined if anamnesis section is not found', () => {
     const text = `
       Texto sin la sección esperada
     `;
@@ -39,7 +39,7 @@ describe("AnamnesisInfoMapper", () => {
     expect(result).toBeUndefined();
   });
 
-    it("should return empty strings when internal sections are missing", () => {
+  it('should return empty strings when internal sections are missing', () => {
     const text = `
       Antecedentes relevantes de la Anamnesis
       Texto general sin subtítulos claros
@@ -49,10 +49,8 @@ describe("AnamnesisInfoMapper", () => {
     const result = AnamnesisInfoMapper.map(text);
 
     expect(result).toEqual({
-      relevantBackground: "",
-      spanishLanguageLevel: "",
+      relevantBackground: '',
+      spanishLanguageLevel: '',
     });
   });
 });
-
-

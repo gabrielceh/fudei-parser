@@ -1,4 +1,4 @@
-import { DiagnosisInfo } from "../models/diagnosis.model";
+import { DiagnosisInfo } from '../models/diagnosis.model';
 
 export type DiagnosisKey = keyof DiagnosisInfo;
 

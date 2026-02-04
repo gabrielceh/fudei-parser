@@ -1,4 +1,4 @@
-import { ProfessionalInfo } from "../models/multidisciplinary-team.model";
+import { ProfessionalInfo } from '../models/multidisciplinary-team.model';
 
 export type ProfessionaInfoKey = keyof ProfessionalInfo;
 

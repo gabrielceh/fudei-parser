@@ -1,6 +1,6 @@
-import { removeHeaderFooter } from "../../src/helpers/remove-footer-pdf.herlper";
+import { removeHeaderFooter } from '../../src/helpers/remove-footer-pdf.herlper';
 
-describe("removeHeaderFooter", () => {
+describe('removeHeaderFooter', () => {
   it('should removes header and footer from text', () => {
     const input = `
       Este es el contenido antes del contenido a eliminar
@@ -12,9 +12,7 @@ describe("removeHeaderFooter", () => {
 
     const result = removeHeaderFooter(input);
 
-    expect(result).toBe(
-      `Este es el contenido antes del contenido a eliminar`
-    );
+    expect(result).toBe(`Este es el contenido antes del contenido a eliminar`);
   });
 
   it('should return the text intact if there is no header/footer', () => {

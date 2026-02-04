@@ -1,4 +1,4 @@
-import { WithOther } from "../types/with-other.interface";
+import { WithOther } from '../types/with-other.interface';
 
 export interface PsychomotorDomain extends WithOther {
   fineMotor: boolean;
@@ -16,4 +16,3 @@ export interface PsychomotorDevelopment {
   temporalOrientation: boolean;
   balance: boolean;
 }
-

@@ -1,4 +1,3 @@
-
 interface Args {
   text: string;
   startTitle: string;
@@ -26,15 +25,15 @@ interface Args {
  * Retorna el contenido de la sección encontrada, sin espacios en los extremos.
  * Retorna `undefined` si no se encuentra el `startTitle`.
  */
-export const extractSectionByTitle = ({startTitle, text, endTitle}:Args): string | undefined => {
-  const safeStart = (startTitle.trim());
-  const safeEnd = endTitle && (endTitle.trim());
+export const extractSectionByTitle = ({ startTitle, text, endTitle }: Args): string | undefined => {
+  const safeStart = startTitle.trim();
+  const safeEnd = endTitle && endTitle.trim();
 
   const pattern = safeEnd
     ? `${safeStart}([\\s\\S]*?)(?=${safeEnd}|$)`
     : `${safeStart}([\\s\\S]*?)$`;
 
-  const regex = new RegExp(pattern, "");
+  const regex = new RegExp(pattern, '');
 
   return text.match(regex)?.[1]?.trim();
 };

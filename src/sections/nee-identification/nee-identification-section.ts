@@ -1,28 +1,28 @@
-import { extractSectionByTitle } from "@src/helpers/extract-section-by-table.helper";
-import { normalizePdfText } from "@src/helpers/normalize-pdf-text.helper";
-import { AffectiveSocialDomainMapper } from "./mappers/affective-social-domain.mapper";
-import { CognitiveDomainMapper } from "./mappers/cognitive-domain.mapper";
-import { CommunicationDomainMapper } from "./mappers/communication-domain.mapper";
-import { CurricularDomainMapper } from "./mappers/curricular-domain.mapper";
-import { EmotionalDomainMapper } from "./mappers/emotional-domain.mapper";
-import { FamilyDomainMapper } from "./mappers/family-domain.mapper";
-import { LanguageDomainMapper } from "./mappers/language-domain.mapper";
-import { LearningObjectivesAdjustmentsMapper } from "./mappers/learning-objectives-adjustments.mapper";
-import { OtherDomainMapper } from "./mappers/other-domain.mapper";
-import { PsychomotorDomainMapper } from "./mappers/psychomotor-domain.mapper";
-import { RequiredProfessionalsMapper } from "./mappers/required-professionals.mapper";
-import { SensoryPerceptualDomainMapper } from "./mappers/sensory-perceptual-domain.mapper";
-import { StudentStrengthsMapper } from "./mappers/student-strengths.mapper";
-import { NeeIdentificationSection } from "./models/nee-identification.model";
+import { extractSectionByTitle } from '@src/helpers/extract-section-by-table.helper';
+import { normalizePdfText } from '@src/helpers/normalize-pdf-text.helper';
+import { AffectiveSocialDomainMapper } from './mappers/affective-social-domain.mapper';
+import { CognitiveDomainMapper } from './mappers/cognitive-domain.mapper';
+import { CommunicationDomainMapper } from './mappers/communication-domain.mapper';
+import { CurricularDomainMapper } from './mappers/curricular-domain.mapper';
+import { EmotionalDomainMapper } from './mappers/emotional-domain.mapper';
+import { FamilyDomainMapper } from './mappers/family-domain.mapper';
+import { LanguageDomainMapper } from './mappers/language-domain.mapper';
+import { LearningObjectivesAdjustmentsMapper } from './mappers/learning-objectives-adjustments.mapper';
+import { OtherDomainMapper } from './mappers/other-domain.mapper';
+import { PsychomotorDomainMapper } from './mappers/psychomotor-domain.mapper';
+import { RequiredProfessionalsMapper } from './mappers/required-professionals.mapper';
+import { SensoryPerceptualDomainMapper } from './mappers/sensory-perceptual-domain.mapper';
+import { StudentStrengthsMapper } from './mappers/student-strengths.mapper';
+import { NeeIdentificationSection } from './models/nee-identification.model';
 
 export const neeIdentificationSection = (text: string): NeeIdentificationSection | undefined => {
-  const textNormalized = normalizePdfText(text);  
+  const textNormalized = normalizePdfText(text);
   const chunkNeeIdentificationText = extractSectionByTitle({
     text: textNormalized,
-    startTitle: "III IDENTIFICACIÓN DE NEE",
-    endTitle: "IV FIRMA DE LOS RESPONSABLES DEL PROCESO DE EVALUACIÓN DIAGNÓSTICA INTEGRAL",
-  })
-  if(!chunkNeeIdentificationText) return undefined;
+    startTitle: 'III IDENTIFICACIÓN DE NEE',
+    endTitle: 'IV FIRMA DE LOS RESPONSABLES DEL PROCESO DE EVALUACIÓN DIAGNÓSTICA INTEGRAL',
+  });
+  if (!chunkNeeIdentificationText) return undefined;
 
   const cognitiveDomain = CognitiveDomainMapper.map(chunkNeeIdentificationText);
   const languageDomain = LanguageDomainMapper.map(chunkNeeIdentificationText);
@@ -36,7 +36,9 @@ export const neeIdentificationSection = (text: string): NeeIdentificationSection
   const otherDomain = OtherDomainMapper.map(chunkNeeIdentificationText);
   const studentStrengths = StudentStrengthsMapper.map(chunkNeeIdentificationText);
   const requiredProfessionals = RequiredProfessionalsMapper.map(chunkNeeIdentificationText);
-  const learningObjectivesAdjustments = LearningObjectivesAdjustmentsMapper.map(chunkNeeIdentificationText);
+  const learningObjectivesAdjustments = LearningObjectivesAdjustmentsMapper.map(
+    chunkNeeIdentificationText,
+  );
 
   return {
     cognitive: cognitiveDomain,
@@ -46,13 +48,11 @@ export const neeIdentificationSection = (text: string): NeeIdentificationSection
     psychomotor: psychomotorDomain,
     affectiveSocial: affectiveSocialDomain,
     emotional: emotionalDomain,
-    curricular : curricularDomain,
+    curricular: curricularDomain,
     family: familyDomain,
     otherDomain: otherDomain,
     studentStrengths: studentStrengths,
     requiredProfessionals: requiredProfessionals,
     learningObjectivesAdjustments: learningObjectivesAdjustments,
-  }
-  
-
+  };
 };

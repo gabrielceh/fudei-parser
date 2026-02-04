@@ -1,5 +1,4 @@
-import { EstablishmentIdentification } from "../models/general-background.interface";
-
+import { EstablishmentIdentification } from '../models/general-background.interface';
 
 export type EstablishmentKey = keyof EstablishmentIdentification;
 

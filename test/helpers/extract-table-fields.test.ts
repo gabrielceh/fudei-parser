@@ -1,5 +1,5 @@
-import { extractTableFields } from "../../src/helpers/extract-table-fields.helper";
-import { LabelPattern } from "../../src/types/label-pattern.interface";
+import { extractTableFields } from '../../src/helpers/extract-table-fields.helper';
+import { LabelPattern } from '../../src/types/label-pattern.interface';
 
 type TestModel = {
   nombre: string;
@@ -30,7 +30,7 @@ Dirección: Calle Falsa 123
     });
   });
 
-    it('should extract multiple fields', () => {
+  it('should extract multiple fields', () => {
     const text = `
 Nombre: Juan
 Pérez Gómez
@@ -49,7 +49,7 @@ Falsa
     });
   });
 
-    it('should handles fields without line breaks between labels', () => {
+  it('should handles fields without line breaks between labels', () => {
     const text = `
 Nombre: Juan Pérez Edad: 32 Dirección: Calle Falsa 123
 `;
@@ -63,7 +63,7 @@ Nombre: Juan Pérez Edad: 32 Dirección: Calle Falsa 123
     });
   });
 
-    it('should capture until end when no more labels are present', () => {
+  it('should capture until end when no more labels are present', () => {
     const text = `
 Nombre: Juan Pérez
 Edad: 32
@@ -78,7 +78,7 @@ Edad: 32
     });
   });
 
-    it('should normalizes labels matches by line breaks', () => {
+  it('should normalizes labels matches by line breaks', () => {
     const text = `
 Nom
 bre: Juan Pérez

@@ -1,12 +1,10 @@
-import { match } from "@src/helpers/match.helper";
-import { normalizeWhitespace } from "@src/helpers/normalize-white-space.helper";
-import { AffectiveSocialDomain } from "../models/affective-social-domain.model";
+import { match } from '@src/helpers/match.helper';
+import { normalizeWhitespace } from '@src/helpers/normalize-white-space.helper';
+import { AffectiveSocialDomain } from '../models/affective-social-domain.model';
 
-const bool = (v?: string) => v?.toUpperCase() === "SI";
+const bool = (v?: string) => v?.toUpperCase() === 'SI';
 
-export const extractAffectiveSocialDomain = (
-  text: string
-): AffectiveSocialDomain => {
+export const extractAffectiveSocialDomain = (text: string): AffectiveSocialDomain => {
   const result: AffectiveSocialDomain = {
     selfEsteemSecurity: false,
     autonomy: false,
@@ -16,36 +14,23 @@ export const extractAffectiveSocialDomain = (
       peers: false,
       adults: false,
     },
-    other: "",
+    other: '',
   };
   // 🔹 Autoestima y Seguridad en sí mismo
-  result.selfEsteemSecurity = bool(
-    match(/Autoestima y Seguridad en sí mismo:\s*(SI|NO)/i, text)
-  );
+  result.selfEsteemSecurity = bool(match(/Autoestima y Seguridad en sí mismo:\s*(SI|NO)/i, text));
   // 🔹 Autonomía
-  result.autonomy = bool(
-    match(/Autonomía:\s*(SI|NO)/i, text)
-  );
+  result.autonomy = bool(match(/Autonomía:\s*(SI|NO)/i, text));
   // 🔹 Autocuidado
-  result.selfCare = bool(
-    match(/Autocuidado:\s*(SI|NO)/i, text)
-  );
+  result.selfCare = bool(match(/Autocuidado:\s*(SI|NO)/i, text));
   // 🔹 Habilidades sociales
-  result.socialSkills = bool(
-    match(/Habilidades sociales:\s*(SI|NO)/i, text)
-  );
+  result.socialSkills = bool(match(/Habilidades sociales:\s*(SI|NO)/i, text));
   // 🔹 Pares
-  result.relationships.peers = bool(
-    match(/Pares\s*(SI|NO)/i, text)
-  );
+  result.relationships.peers = bool(match(/Pares\s*(SI|NO)/i, text));
   // 🔹 Adultos
-  result.relationships.adults = bool(
-    match(/Adultos\s*(SI|NO)/i, text)
-  );
+  result.relationships.adults = bool(match(/Adultos\s*(SI|NO)/i, text));
 
   // 🔹 Otro
-  result.other = normalizeWhitespace(match(/Otro\s*([\s\S]*)/, text) || "");
-
+  result.other = normalizeWhitespace(match(/Otro\s*([\s\S]*)/, text) || '');
 
   return result;
 };

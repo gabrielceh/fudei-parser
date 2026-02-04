@@ -1,4 +1,4 @@
-import { WithOther } from "../types/with-other.interface";
+import { WithOther } from '../types/with-other.interface';
 
 export interface SensoryPerceptualDomain extends WithOther {
   visual: boolean;

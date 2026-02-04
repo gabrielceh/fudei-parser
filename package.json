@@ -8,6 +8,9 @@
     "name": "Gabriel Cervantes",
     "email": "gabrielcehu@gmail.com"
   },
+  "repository": {
+    "url": "https://github.com/gabrielceh/fudei-parser"
+  },
   "keywords": [
     "pdf",
     "scraping",

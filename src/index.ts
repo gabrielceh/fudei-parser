@@ -11,7 +11,7 @@ import { signaturesSection } from './sections/signatures/sigantures-section';
 // const file1 = { path: "C:\/Users\/gach0\/OneDrive\/Desktop\/proyectos\/scraping-pdf-fudei\/pdfs\/FU_21498364.pdf", name: "FU_21498364" };
 // const file2 = { path: "./pdfs/FU_26166005.pdf", name: "FU_26166005" };
 
-interface FudeiScraperOptions {
+export interface FudeiScraperOptions {
   saveJson?: boolean;
   fileName?: string;
   outputPath?: string;
@@ -64,7 +64,6 @@ export class FudeiPdfScraper {
         outputPath: this.options.outputPath,
       });
     }
-
     return fudei;
   }
 }

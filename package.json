@@ -1,9 +1,23 @@
 {
-  "name": "pdf-pdf-fudei",
+  "name": "fudei-parser",
   "version": "1.0.0",
   "description": "Scraper para fudei",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": {
+    "name": "Gabriel Cervantes",
+    "email": "gabrielcehu@gmail.com"
+  },
+  "keywords": [
+    "pdf",
+    "scraping",
+    "fudei"
+  ],
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "prepublishOnly": "npm run build",
     "build": "tsc -p tsconfig.build.json && tsc-alias",
     "start": "node dist/index.js",
     "dev": "ts-node -r tsconfig-paths/register -P tsconfig.build.json src/index.ts",
